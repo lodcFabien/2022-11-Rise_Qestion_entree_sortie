@@ -13,12 +13,6 @@ public class GameView : MonoBehaviour
     [Header("Team Name")]
     [SerializeField] private TMP_Text teamNameText;
 
-    //[Header("Confirm Button Text")]
-    //[SerializeField] private TMP_Text confirmButtonText;
-
-    [Header("Animation")]
-    [SerializeField] private Animator animator;
-
     public bool WaitAnimationEnded { get; private set; } = false;
     public bool CorrectAnimationEnded { get; private set; } = false;
     public bool WrongAnimationEnded { get; private set; } = false;
@@ -45,49 +39,25 @@ public class GameView : MonoBehaviour
         teamNameText.text = name;
     }
 
-    //public void SetConfirmButton(QuizState state)
-    //{
-    //    var isFrench = LocalizationManager.Instance.ActiveLanguage == Language.French;
-
-    //    switch (state)
-    //    {
-    //        case QuizState.Setup:
-    //        case QuizState.EntryQuestion:
-    //        case QuizState.ExitQuestion:
-    //            confirmButtonText.text = isFrench ? "VALIDER" : "CONFIRM";
-    //            break;
-    //        case QuizState.WaitingForStart:
-    //            confirmButtonText.text = isFrench? "COMMENCER" : "START";
-    //            break;
-    //        case QuizState.WaitingForExpertSpeech:
-    //        case QuizState.VerifyingAnswer:
-    //            confirmButtonText.text = isFrench ? "CONTINUER" : "CONTINUE";
-    //            break;
-    //        case QuizState.DisplayingHint:
-    //            confirmButtonText.text = isFrench ? "OK" : "OKAY";
-    //            break;
-    //        case QuizState.Ended:
-    //            confirmButtonText.text = isFrench ? "TERMINER" : "FINISH";
-    //            break;
-    //    }
-    //}
-
     public void DoWaitAnimation()
     {
         WaitAnimationEnded = false;
-        animator.SetTrigger("wait");
+        WaitAnimationEnded = true;
+        //animator.SetTrigger("wait");
     }
 
     public void DoCorrectAnimation()
     {
         CorrectAnimationEnded = false;
-        animator.SetTrigger("correct");
+        CorrectAnimationEnded = true;
+        //animator.SetTrigger("correct");
     }
 
     public void DoWrongAnimation()
     {
         WrongAnimationEnded = false;
-        animator.SetTrigger("wrong");
+        WrongAnimationEnded = true;
+        //animator.SetTrigger("wrong");
     }
 
     // Animation Events
