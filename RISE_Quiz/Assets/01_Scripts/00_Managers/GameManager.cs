@@ -62,6 +62,11 @@ public class GameManager : MonoBehaviour
     {
         InitializeSingleton();
         data.Init();
+    }
+
+    private void Start()
+    {
+        view.Init();
         SetState(QuizState.Setup);
     }
 
@@ -161,68 +166,58 @@ public class GameManager : MonoBehaviour
                 break;
 
             case QuizState.EntryQuestion:
-                if (!entryQuestion.Question.CanBeValidated())
-                {
-                    Debug.LogWarning("You must select at least one answer before validating!");
-                    return;
-                }
-                StartCoroutine(CheckAnswerCoroutine(entryQuestion.Question));
-                break;
-
             case QuizState.ExitQuestion:
-                if (!exitQuestion.Question.CanBeValidated())
-                {
-                    Debug.LogWarning("You must select at least one answer before validating!");
-                    return;
-                }
-
-                StartCoroutine(CheckAnswerCoroutine(exitQuestion.Question));
+                VerifyAnswer();
                 break;
 
             case QuizState.VerifyingAnswer:
-                if(currentQuestion.Question.State == QuestionState.AnsweredCorrectly)
-                {
-                    if (currentQuestion == entryQuestion)
-                    {
-                        SetState(QuizState.WaitingForExpertSpeech);
-                    }
-                    else
-                    {
-                        SetState(QuizState.DisplayingHint);
-                    }
-                }
-                else
-                {
-                    if (currentQuestion == exitQuestion)
-                    {
-                        SetState(QuizState.EntryQuestion);
-                    }
-                    else
-                    {
-                        SetState(QuizState.ExitQuestion);
-                    }
-                }
                 break;
         }
     }
 
-    private IEnumerator CheckAnswerCoroutine(MultipleChoiceQuestion question)
+    private void VerifyAnswer()
     {
-        view.DoWaitAnimation();
-        yield return new WaitUntil(() => view.WaitAnimationEnded);
+        SetState(QuizState.VerifyingAnswer);
 
-        if (QuestionWasCorrectlyAnswered(question))
+        if (!currentQuestion.Question.CanBeValidated())
+        {
+            Debug.LogWarning("You must select at least one answer before validating!");
+            return;
+        }
+
+        StartCoroutine(VerifyCoroutine(AnsweredCorrectly(currentQuestion.Question)));
+    }
+
+    private IEnumerator VerifyCoroutine(bool answerIsCorrect)
+    {
+        if(answerIsCorrect)
         {
             view.DoCorrectAnimation();
             yield return new WaitUntil(() => view.CorrectAnimationEnded);
+
+            if (currentQuestion == entryQuestion)
+            {
+                SetState(QuizState.WaitingForExpertSpeech);
+            }
+            else
+            {
+                SetState(QuizState.DisplayingHint);
+            }
         }
         else
         {
             view.DoWrongAnimation();
             yield return new WaitUntil(() => view.WrongAnimationEnded);
-        }
 
-        SetState(QuizState.VerifyingAnswer);
+            if (currentQuestion == exitQuestion)
+            {
+                SetState(QuizState.EntryQuestion);
+            }
+            else
+            {
+                SetState(QuizState.ExitQuestion);
+            }
+        }
     }
 
     public void SetNextTeam()
@@ -279,7 +274,7 @@ public class GameManager : MonoBehaviour
         view.SetTeamName(currentTeam.Name);
     }
 
-    private bool QuestionWasCorrectlyAnswered(MultipleChoiceQuestion question)
+    private bool AnsweredCorrectly(MultipleChoiceQuestion question)
     {
         question.Verify();
         return question.State == QuestionState.AnsweredCorrectly;

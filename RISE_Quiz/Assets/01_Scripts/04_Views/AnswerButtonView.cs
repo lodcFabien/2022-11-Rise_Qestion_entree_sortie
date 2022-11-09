@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class AnswerButtonView : ButtonView
 {
+    public void Select()
+    {
 
+    }
+
+    public void Deselect()
+    {
+
+    }
 }
