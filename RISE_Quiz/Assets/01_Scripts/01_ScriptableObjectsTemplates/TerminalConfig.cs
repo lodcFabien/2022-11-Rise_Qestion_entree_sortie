@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Config/Terminal")]
@@ -9,13 +10,18 @@ public class TerminalConfig : ScriptableObject
     [SerializeField] private string[] teamHints;
 
     public int ID => id;
+    private int EntryQID => (id * 10) + 1;
+    private int ExitQID => EntryQID + 1;
     public MultipleChoiceQuestion EntryQuestion => entryQuestion;
     public MultipleChoiceQuestion ExitQuestion => exitQuestion;
     public int[] TeamOrder => QuizUtils.GetTeamOrderFromTerminalID(id);
     public string[] TeamHints => teamHints;
 
-    public void Init(string[] hints)
+    public void Init(List<MultipleChoiceQuestion> questions, string[] hints)
     {
+        entryQuestion = questions.Find(x => x.ID == EntryQID);
+        exitQuestion = questions.Find(x => x.ID == ExitQID);
+
         teamHints = new string[hints.Length];
 
         for (int i = 0; i < teamHints.Length; i++)

@@ -7,12 +7,13 @@ public class Data : ScriptableObject
 {
     [SerializeField] private List<TerminalConfig> terminals;
     [SerializeField] private List<GroupConfig> groups;
+    [SerializeField] private List<MultipleChoiceQuestion> questions;
     [SerializeField] private string[] wordsToFind;
 
     public void Init()
     {
         groups.ForEach(x => x.Init());
-        terminals.ForEach(x => x.Init(wordsToFind));
+        terminals.ForEach(x => x.Init(questions, wordsToFind));
     }
 
     public TerminalConfig GetTerminalFromID(int id)

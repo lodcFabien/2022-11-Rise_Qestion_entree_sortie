@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: Question#4-2
   m_EditorClassIdentifier: 
   dataText:
-    english: 
-    french: 
+    english: Which nationality is the Japanese gentleman?
+    french: "De quelle nationalit\xE9 est le monsieur japonais ?"
   id: 42
   state: 0
-  answers: []
+  answers:
+  - dataText:
+      english: Japanese
+      french: Japonaise
+    isCorrect: 1
+    isChecked: 0
+  - dataText:
+      english: French
+      french: "Fran\xE7aise"
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: Italian
+      french: Italienne
+    isCorrect: 0
+    isChecked: 0

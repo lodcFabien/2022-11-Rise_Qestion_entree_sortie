@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Quiz/Answers/MultipleChoiceAnswer")]
+[System.Serializable]
 public class MultipleChoiceAnswer : Answer
 {
     [Header("Is Answer Correct?")]

@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: Question#4-1
   m_EditorClassIdentifier: 
   dataText:
-    english: 
-    french: 
+    english: How high is a 2.5 meter-high wall?
+    french: "Quelle taille mesure un mur de 2,5 m\xE8tres ?"
   id: 41
   state: 0
-  answers: []
+  answers:
+  - dataText:
+      english: 1.5 meter
+      french: "1,5 m\xE8tre"
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: 2.5 meters
+      french: "2,5 m\xE8tres"
+    isCorrect: 1
+    isChecked: 0
+  - dataText:
+      english: 3 meters
+      french: "3 m\xE8tres"
+    isCorrect: 0
+    isChecked: 0

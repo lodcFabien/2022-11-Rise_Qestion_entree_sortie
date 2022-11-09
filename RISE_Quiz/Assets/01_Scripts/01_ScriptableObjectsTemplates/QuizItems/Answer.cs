@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public abstract class Answer : QuizItem
+public abstract class Answer
 {
+    [SerializeField] protected LocalizationData dataText;
     public abstract bool IsCorrect();
     public abstract void ResetParameters();
-    //public abstract bool CanBeValidated();
+    public string Text => dataText.GetTranslation(LocalizationManager.Instance.ActiveLanguage);
 }

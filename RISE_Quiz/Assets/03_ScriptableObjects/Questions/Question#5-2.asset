@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: Question#5-2
   m_EditorClassIdentifier: 
   dataText:
-    english: 
-    french: 
+    english: How many children does Claire, mother of three, have?
+    french: "Combien d'enfants a Claire, m\xE8re de 3 petits ?"
   id: 52
   state: 0
-  answers: []
+  answers:
+  - dataText:
+      english: 1
+      french: 1
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: 3
+      french: 3
+    isCorrect: 1
+    isChecked: 0
+  - dataText:
+      english: 25
+      french: 25
+    isCorrect: 0
+    isChecked: 0

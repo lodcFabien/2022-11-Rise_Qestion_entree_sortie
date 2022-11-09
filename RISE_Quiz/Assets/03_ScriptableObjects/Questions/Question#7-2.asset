@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: Question#7-2
   m_EditorClassIdentifier: 
   dataText:
-    english: 
-    french: 
+    english: 'The RISE is a development program for an engine destined to:'
+    french: "Le RISE est un programme de d\xE9veloppement de moteur pour :"
   id: 72
   state: 0
-  answers: []
+  answers:
+  - dataText:
+      english: Aircrafts
+      french: Les avions
+    isCorrect: 1
+    isChecked: 0
+  - dataText:
+      english: Trains
+      french: Les trains
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: Hairdryers
+      french: "Les s\xE8che-cheveux"
+    isCorrect: 0
+    isChecked: 0

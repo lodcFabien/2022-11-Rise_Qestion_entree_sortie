@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: Question#5-1
   m_EditorClassIdentifier: 
   dataText:
-    english: 
-    french: 
+    english: What does chocolate taste like?
+    french: "Quel go\xFBt a le chocolat ?"
   id: 51
   state: 0
-  answers: []
+  answers:
+  - dataText:
+      english: Strawberry
+      french: Fraise
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: Vanilla
+      french: Vanille
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: Chocolate
+      french: Chocolat
+    isCorrect: 1
+    isChecked: 0

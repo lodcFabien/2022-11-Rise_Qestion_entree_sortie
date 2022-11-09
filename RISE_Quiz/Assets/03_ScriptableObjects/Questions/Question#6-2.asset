@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: Question#6-2
   m_EditorClassIdentifier: 
   dataText:
-    english: 
-    french: 
+    english: What is the name of CFM's future civil engine?
+    french: Comment s'appelle le futur moteur civil de CFM ?
   id: 62
   state: 0
-  answers: []
+  answers:
+  - dataText:
+      english: RISE
+      french: RISE
+    isCorrect: 1
+    isChecked: 0
+  - dataText:
+      english: FALL
+      french: FALL
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: SOAR
+      french: SOAR
+    isCorrect: 0
+    isChecked: 0
