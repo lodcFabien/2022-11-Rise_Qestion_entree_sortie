@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f506a2e7d45b5284ea4105ec9b458cc3, type: 3}
+  m_Name: Data
+  m_EditorClassIdentifier: 
+  terminals:
+  - {fileID: 11400000, guid: f62660aa1e28aea4fb9695c5f0ab038f, type: 2}
+  - {fileID: 11400000, guid: 2c1d711ad955b6e48905e3c6c652170d, type: 2}
+  - {fileID: 11400000, guid: 406a5f16411f23b428793c6ffe3c9295, type: 2}
+  - {fileID: 11400000, guid: 7045bbfcffbf48b429fa28e6e0f8d0e3, type: 2}
+  - {fileID: 11400000, guid: db1e8f375ce3c29499c7ff65063993e0, type: 2}
+  - {fileID: 11400000, guid: cee0b6d225a36e24e92a8c9fdc410c41, type: 2}
+  - {fileID: 11400000, guid: 5c19daedb52c2444a95e05c91350afad, type: 2}
+  groups:
+  - {fileID: 11400000, guid: 4e51da56f77e8604e861d365648a0fd7, type: 2}
+  - {fileID: 11400000, guid: 8f669ef234b266a49a273067a3130a25, type: 2}
+  - {fileID: 11400000, guid: c71e9318d1893004bac0aba390ba52ec, type: 2}
+  - {fileID: 11400000, guid: fa5a2efc1d409c244a938b796ca69523, type: 2}
+  wordsToFind:
+  - INTENSE
+  - HORIZON
+  - PLANETE
+  - SERIEUX
+  - EXPLOIT
+  - SOUTIEN
+  - RADIEUX

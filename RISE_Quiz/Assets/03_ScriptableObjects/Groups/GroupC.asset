@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80e582b9a00bc6439a7417ba6f27e23, type: 3}
+  m_Name: GroupC
+  m_EditorClassIdentifier: 
+  group: 2
+  teams:
+  - teamNumber: 15
+  - teamNumber: 16
+  - teamNumber: 17
+  - teamNumber: 18
+  - teamNumber: 19
+  - teamNumber: 20
+  - teamNumber: 21
