@@ -13,10 +13,6 @@ public class GameView : MonoBehaviour
     [Header("Team Name")]
     [SerializeField] private TMP_Text teamNameText;
 
-    public bool CorrectAnimationEnded { get; private set; } = false;
-    public bool WrongAnimationEnded { get; private set; } = false;
-
-
     public void Init()
     {
         UpdateText(LocalizationManager.Instance.ActiveLanguage);
@@ -38,21 +34,4 @@ public class GameView : MonoBehaviour
     {
         teamNameText.text = name;
     }
-
-    public void DoCorrectAnimation()
-    {
-        CorrectAnimationEnded = false;
-        //animator.SetTrigger("correct");
-    }
-
-    public void DoWrongAnimation()
-    {
-        WrongAnimationEnded = false;
-        //animator.SetTrigger("wrong");
-    }
-
-    // Animation Events
-
-    private void OnCorrectAnimationEnded() { CorrectAnimationEnded = true; }
-    private void OnWrongAnimationEnded() { WrongAnimationEnded = true; }
 }

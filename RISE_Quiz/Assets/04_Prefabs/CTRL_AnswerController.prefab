@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 5720995661883509554}
   - component: {fileID: 5720995661883509556}
   - component: {fileID: 5720995661883509555}
-  - component: {fileID: 2509969119938811078}
+  - component: {fileID: 8902010230631091035}
   - component: {fileID: 5295142534015274869}
   m_Layer: 5
   m_Name: CTRL_AnswerController
@@ -375,8 +375,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleObject: {fileID: 3963711291810194560}
-  view: {fileID: 2509969119938811078}
+  view: {fileID: 8902010230631091035}
   button: {fileID: 6188777867727832565}
+  state: 0
   textFitter: {fileID: 5720995661883509555}
   widthCap: 450
 --- !u!114 &5720995661883509555
@@ -394,7 +395,7 @@ MonoBehaviour:
   rectTransform: {fileID: 5720995661883509554}
   padding: {x: 50, y: 10}
   text: {fileID: 5720995661671375657}
---- !u!114 &2509969119938811078
+--- !u!114 &8902010230631091035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -407,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 5720995661671375657}
-  animator: {fileID: 0}
+  animator: {fileID: 5295142534015274869}
 --- !u!95 &5295142534015274869
 Animator:
   serializedVersion: 4

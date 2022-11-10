@@ -56,6 +56,12 @@ public class GameManager : MonoBehaviour
     public Action<QuizState> OnQuizStateChanged { get; set; }
     public Action<GroupConfig> OnGroupChanged { get; set; }
 
+    private bool EntryQuestionDisplayed => state == QuizState.EntryQuestion ||
+        state == QuizState.Verifying && currentQuestion == entryQuestion;
+
+    private bool ExitQuestionDisplayed => state == QuizState.ExitQuestion ||
+        state == QuizState.Verifying && currentQuestion == exitQuestion;
+
     #region Unity Messages
 
     private void Awake()
@@ -115,8 +121,8 @@ public class GameManager : MonoBehaviour
         waitForStartPanel.Toggle(state == QuizState.WaitingForStart);
         expertSpeechPanel.Toggle(state == QuizState.WaitingForExpertSpeech);
         hintPanel.Toggle(state == QuizState.DisplayingHint);
-        entryQuestion.Toggle(state == QuizState.EntryQuestion);
-        exitQuestion.Toggle(state == QuizState.ExitQuestion);
+        entryQuestion.Toggle(EntryQuestionDisplayed);
+        exitQuestion.Toggle(ExitQuestionDisplayed);
         endPanel.Toggle(state == QuizState.Ended);
 
         switch (state)
@@ -167,34 +173,34 @@ public class GameManager : MonoBehaviour
 
             case QuizState.EntryQuestion:
             case QuizState.ExitQuestion:
-                VerifyAnswer();
+                VerifyQuestion();
                 break;
 
-            case QuizState.VerifyingAnswer:
+            case QuizState.Verifying:
                 break;
         }
     }
 
-    private void VerifyAnswer()
+    private void VerifyQuestion()
     {
-        SetState(QuizState.VerifyingAnswer);
+        SetState(QuizState.Verifying);
 
-        if (!currentQuestion.Question.CanBeValidated())
+        if (!currentQuestion.CanBeValidated)
         {
             Debug.LogWarning("You must select at least one answer before validating!");
             return;
         }
 
-        StartCoroutine(VerifyCoroutine(AnsweredCorrectly(currentQuestion.Question)));
+        StartCoroutine(VerifyCoroutine());
     }
 
-    private IEnumerator VerifyCoroutine(bool answerIsCorrect)
+    private IEnumerator VerifyCoroutine()
     {
-        if(answerIsCorrect)
-        {
-            view.DoCorrectAnimation();
-            yield return new WaitUntil(() => view.CorrectAnimationEnded);
+        bool answerIsCorrect = AnsweredCorrectly(currentQuestion);
+        yield return new WaitUntil(() => currentQuestion.AnswerAnimationEnded);
 
+        if (answerIsCorrect)
+        {
             if (currentQuestion == entryQuestion)
             {
                 SetState(QuizState.WaitingForExpertSpeech);
@@ -204,12 +210,10 @@ public class GameManager : MonoBehaviour
                 SetState(QuizState.DisplayingHint);
             }
         }
+
         else
         {
-            view.DoWrongAnimation();
-            yield return new WaitUntil(() => view.WrongAnimationEnded);
-
-            if (currentQuestion == exitQuestion)
+            if (currentQuestion == entryQuestion)
             {
                 SetState(QuizState.EntryQuestion);
             }
@@ -274,10 +278,9 @@ public class GameManager : MonoBehaviour
         view.SetTeamName(currentTeam.Name);
     }
 
-    private bool AnsweredCorrectly(MultipleChoiceQuestion question)
+    private bool AnsweredCorrectly(QuestionController question)
     {
-        question.Verify();
-        return question.State == QuestionState.AnsweredCorrectly;
+        return question.Verify() == QuestionState.AnsweredCorrectly;
     }
 
     #endregion

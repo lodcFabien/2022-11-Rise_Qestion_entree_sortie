@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class AnswerController : ButtonController, ISelectable
 {
+    [SerializeField] protected AnswerControllerState state;
     [SerializeField] protected TextFitter textFitter;
     [SerializeField] protected float widthCap = 450f;
 
-    public AnswerButtonView View => view as AnswerButtonView;
-    public MultipleChoiceAnswer Answer { get; protected set; }
+    protected AnswerView View => view as AnswerView;
+    protected MultipleChoiceAnswer Answer { get; set; }
     public Action<AnswerController> OnSelect { get ; set; }
     public Action<AnswerController> OnDeselect { get ; set; }
     public bool IsSelected { get; protected set; }
@@ -18,52 +18,90 @@ public class AnswerController : ButtonController, ISelectable
         Answer = answer;
         view.Populate(Answer.Text);
         textFitter.FitHorizontallyToText(widthCap);
-        SetDeselectedWithoutNotify();
+        ResetAnswer();
     }
 
-    public void Select()
+    public void SelectWithNotify()
     {
-        if(IsSelected) { return; }
-
-        IsSelected = true;
-        View.Select();
+        if (IsSelected) { return; }
+        Select();
         OnSelect?.Invoke(this);
-
-        Answer.Toggle(IsSelected);
     }
 
-    public void Deselect()
+    public void SelectWithoutNotify()
     {
-        if(!IsSelected) { return; }
+        Select();
+    }
 
-        IsSelected = false;
-        View.Deselect();
+    public void DeselectWithNotify()
+    {
+        if (!IsSelected) { return; }
+        Deselect();
         OnDeselect?.Invoke(this);
-
-        Answer.Toggle(IsSelected);
     }
 
-    public void SetSelectedWithoutNotify()
+    public void DeselectWithoutNotify()
     {
-        IsSelected = true;
-        View.Select();
-        Answer.Toggle(IsSelected);
-    }
-
-    public void SetDeselectedWithoutNotify()
-    {
-        IsSelected = false;
-        View.Deselect();
-        Answer.Toggle(IsSelected);
+        Deselect();
     }
 
     public void OnClick()
     {
-        if (IsSelected) Deselect();
-        else Select();
+        if (IsSelected) DeselectWithNotify();
+        else SelectWithNotify();
+    }
+
+    public void Verify()
+    {
+        if (state == AnswerControllerState.Unselected)
+        {
+            SetState(AnswerControllerState.Hidden);
+        }
+
+        else if (state == AnswerControllerState.Selected)
+        {
+            if (Answer.IsCorrect())
+            {
+                SetState(AnswerControllerState.Correct);
+            }
+            else
+            {
+                SetState(AnswerControllerState.Incorrect);
+            }
+        }
+    }
+
+    public void ResetAnswer()
+    {
+        Answer.ResetParameters();
+        DeselectWithoutNotify();
+    }
+
+    private void Select()
+    {
+        IsSelected = true;
+        Answer.Toggle(IsSelected);
+        SetState(AnswerControllerState.Selected);
+    }
+
+    private void Deselect()
+    {
+        IsSelected = false;
+        Answer.Toggle(IsSelected);
+        SetState(AnswerControllerState.Unselected);
+    }
+
+    private void SetState(AnswerControllerState newState)
+    {
+        state = newState;
+        View.SetAnimatorState((int)state);
     }
 }
-public enum AnswerState
+public enum AnswerControllerState
 {
-
+    Unselected,
+    Selected,
+    Hidden,
+    Correct,
+    Incorrect
 }

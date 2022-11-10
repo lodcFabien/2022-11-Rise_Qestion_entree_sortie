@@ -66,7 +66,7 @@ public enum QuizState
     EntryQuestion,
     WaitingForExpertSpeech,
     ExitQuestion,
-    VerifyingAnswer,
+    Verifying,
     DisplayingHint,
     Ended
 }

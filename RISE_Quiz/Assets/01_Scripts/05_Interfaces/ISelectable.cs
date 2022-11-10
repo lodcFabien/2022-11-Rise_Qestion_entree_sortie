@@ -2,6 +2,6 @@
 
 public interface ISelectable
 {
-    void Select();
-    void Deselect();
+    void SelectWithNotify();
+    void DeselectWithNotify();
 }
