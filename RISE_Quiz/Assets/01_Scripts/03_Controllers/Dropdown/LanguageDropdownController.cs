@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class LanguageDropdownController : DropdownController
 {
+    public override int SetDefaultValue()
+    {
+        return (int)Language.French;
+    }
+
     public override void SetOptions(Language language)
     {
         SetDropdownOptions(UIUtils.GetLanguageOptionsList(language));
-        SetValue(0);
     }
 
     public override void SetValue(int valueIndex)

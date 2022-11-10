@@ -915,7 +915,6 @@ GameObject:
   - component: {fileID: 4203563564387634532}
   - component: {fileID: 4203563564387634533}
   - component: {fileID: 4203563564387634458}
-  - component: {fileID: 4203563564387634456}
   m_Layer: 5
   m_Name: CTRL_SettingDropdown
   m_TagString: Untagged
@@ -1054,21 +1053,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_AlphaFadeSpeed: 0.15
---- !u!114 &4203563564387634456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4203563564387634462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca7032850d35b349854430d66226d0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingName: Language
-  component: {fileID: 0}
-  dropdown: {fileID: 4203563564387634458}
 --- !u!1 &4203563564410518245
 GameObject:
   m_ObjectHideFlags: 0

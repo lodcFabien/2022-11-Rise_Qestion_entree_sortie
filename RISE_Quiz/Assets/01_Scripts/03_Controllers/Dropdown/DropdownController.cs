@@ -4,11 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class DropdownController : SaveableComponent
+public abstract class DropdownController : MonoBehaviour
 {
     [SerializeField] protected TMP_Dropdown dropdown;
 
-    public override void Init()
+    public virtual void Init()
     {
         SetOptions(LocalizationManager.Instance.ActiveLanguage);
         LocalizationManager.Instance.OnLanguageChanged += UpdateOptions;
@@ -21,13 +21,15 @@ public abstract class DropdownController : SaveableComponent
 
     public abstract void SetOptions(Language language);
     public abstract void SetValue(int valueIndex);
+    public abstract int SetDefaultValue();
 
     public void SetDropdownOptions(List<string> options)
     {
-        int currentValue = dropdown.value;
+        int currentValue = SetDefaultValue();
         dropdown.ClearOptions();
         dropdown.AddOptions(options);
         dropdown.value = currentValue;
         dropdown.RefreshShownValue();
+        dropdown.onValueChanged.Invoke(currentValue);
     }
 }

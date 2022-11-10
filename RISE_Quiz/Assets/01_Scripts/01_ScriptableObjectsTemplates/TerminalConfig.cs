@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Config/Terminal")]
@@ -14,7 +15,6 @@ public class TerminalConfig : ScriptableObject
     private int ExitQID => EntryQID + 1;
     public MultipleChoiceQuestion EntryQuestion => entryQuestion;
     public MultipleChoiceQuestion ExitQuestion => exitQuestion;
-    public int[] TeamOrder => QuizUtils.GetTeamOrderFromTerminalID(id);
     public string[] TeamHints => teamHints;
 
     public void Init(List<MultipleChoiceQuestion> questions, string[] hints)
@@ -28,6 +28,13 @@ public class TerminalConfig : ScriptableObject
         {
             teamHints[i] = hints[i][QuizUtils.GetLetterHintIndexByTerminalID(id)].ToString();
         }
+    }
+
+    public List<Team> GetSortedTeams(Group group)
+    {
+        int[] teamOrder = QuizUtils.GetTeamOrderFromTerminalID(id);
+        List<Team> teams = group.Teams;
+        return teamOrder.Select(i => teams[i]).ToList();
     }
 }
 

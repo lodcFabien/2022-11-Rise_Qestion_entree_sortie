@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class GroupDropdownController : DropdownController
 {
+    public override int SetDefaultValue()
+    {
+        return (int)GroupLetter.A;
+    }
+
     public override void SetOptions(Language language)
     {
         SetDropdownOptions(UIUtils.GetGroupOptionsList());
-        SetValue(0);
     }
 
     public override void SetValue(int valueIndex)

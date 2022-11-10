@@ -44,7 +44,7 @@ public static class UIUtils
         return options;
     }
 
-    public static List<string> GetTeamOptionsList(GroupConfig currentGroup)
+    public static List<string> GetTeamOptionsList(Group currentGroup)
     {
         var options = new List<string>();
 

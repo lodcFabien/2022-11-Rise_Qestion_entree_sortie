@@ -6,14 +6,14 @@ using UnityEngine;
 public class Data : ScriptableObject
 {
     [SerializeField] private List<TerminalConfig> terminals;
-    [SerializeField] private List<GroupConfig> groups;
+    [SerializeField] private List<Group> groups;
     [SerializeField] private List<MultipleChoiceQuestion> questions;
     [SerializeField] private string[] wordsToFind;
 
     public void Init()
     {
-        groups.ForEach(x => x.Init());
         terminals.ForEach(x => x.Init(questions, wordsToFind));
+        groups.ForEach(x => x.Init());
     }
 
     public TerminalConfig GetTerminalFromID(int id)
@@ -21,7 +21,7 @@ public class Data : ScriptableObject
         return terminals.Find(x => x.ID == id);
     }
 
-    public GroupConfig GetGroupFromLetter(GroupLetter letter)
+    public Group GetGroupFromLetter(GroupLetter letter)
     {
         return groups.Find(x => x.GroupLetter == letter);
     }

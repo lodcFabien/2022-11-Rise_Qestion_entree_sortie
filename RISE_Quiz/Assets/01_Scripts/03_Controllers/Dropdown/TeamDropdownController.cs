@@ -10,7 +10,7 @@ public class TeamDropdownController : DropdownController
         GameManager.Instance.OnGroupChanged += UpdateOptions;
     }
 
-    private void UpdateOptions(GroupConfig config)
+    private void UpdateOptions(Group config)
     {
         SetDropdownOptions(UIUtils.GetTeamOptionsList(config));
     }
@@ -18,7 +18,6 @@ public class TeamDropdownController : DropdownController
     public override void SetOptions(Language language)
     {
         SetDropdownOptions(UIUtils.GetTeamOptionsList(GameManager.Instance.GetCurrentGroup()));
-        SetValue(0);
     }
 
     public override void SetValue(int valueIndex)
@@ -29,5 +28,10 @@ public class TeamDropdownController : DropdownController
         }
 
         GameManager.Instance.SetTeam(valueIndex);
+    }
+
+    public override int SetDefaultValue()
+    {
+        return 0;
     }
 }
