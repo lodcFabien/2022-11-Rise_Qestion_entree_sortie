@@ -55,7 +55,8 @@ public class GameManager : MonoBehaviour
 
     public Action<QuizState> OnQuizStateChanged { get; set; }
     public Action<GroupConfig> OnGroupChanged { get; set; }
-
+    public QuizState State => state;
+    
     private bool EntryQuestionDisplayed => state == QuizState.EntryQuestion ||
         state == QuizState.Verifying && currentQuestion == entryQuestion;
 
@@ -83,13 +84,11 @@ public class GameManager : MonoBehaviour
     public void SetTerminalID(int id)
     {
         terminalID = id;
+        terminalConfig = data.GetTerminalFromID(terminalID);
     }
 
     private void Setup()
     {
-        // Get Terminal Config
-        terminalConfig = data.GetTerminalFromID(terminalID);
-
         // Populate Interface
         entryQuestion.Init(terminalConfig.EntryQuestion);
         exitQuestion.Init(terminalConfig.ExitQuestion);
@@ -97,7 +96,7 @@ public class GameManager : MonoBehaviour
         exitQuestion.Toggle(false);
 
         // Set First Group and First Team
-        SetGroup(currentGroup, true);
+        SetGroup(currentGroup);
 
         SetState(QuizState.WaitingForStart);
     }
@@ -194,7 +193,7 @@ public class GameManager : MonoBehaviour
         currentQuestion.Verify(currentQuestion == entryQuestion ? 0 : 1);
     }
 
-    public void SetNextTeam()
+    private void SetNextTeam()
     {
         if (currentTeamOrderIndex == sortedTeams.Count - 1)
         {
@@ -233,25 +232,30 @@ public class GameManager : MonoBehaviour
 
     #region Utils
 
-    private void SetGroup(GroupConfig newGroupConfig, bool alsoSetTeams = true)
+    private void SetGroup(GroupConfig newGroupConfig)
     {
         currentGroup = newGroupConfig;
 
-        if(alsoSetTeams)
-        {
-            sortedTeams.Clear();
-            sortedTeams = currentGroup.GetSortedTeams(terminalConfig.TeamOrder);
-            currentTeamOrderIndex = 0;
-            currentQuestion = null;
-            SetTeam();
-        }
+        sortedTeams.Clear();
+        sortedTeams = currentGroup.GetSortedTeams(terminalConfig.TeamOrder);
+        currentTeamOrderIndex = 0;
+        currentQuestion = null;
+        SetTeam();
 
         OnGroupChanged?.Invoke(currentGroup);
     }
 
     public void SetGroup(GroupLetter letter)
     {
-        SetGroup(data.GetGroupFromLetter(letter), false);
+        SetGroup(data.GetGroupFromLetter(letter));
+    }
+
+    public GroupConfig GetCurrentGroup() { return currentGroup; }
+
+    public void SetTeam(int index)
+    {
+        currentTeamOrderIndex = index;
+        SetTeam();
     }
 
     private void SetTeam()
@@ -261,6 +265,5 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-
 
 }

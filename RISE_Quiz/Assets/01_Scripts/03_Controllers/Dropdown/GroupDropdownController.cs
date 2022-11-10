@@ -7,6 +7,7 @@ public class GroupDropdownController : DropdownController
     public override void SetOptions(Language language)
     {
         SetDropdownOptions(UIUtils.GetGroupOptionsList());
+        SetValue(0);
     }
 
     public override void SetValue(int valueIndex)

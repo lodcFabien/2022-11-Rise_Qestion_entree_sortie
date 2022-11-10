@@ -20,6 +20,10 @@ public class SaveDataManager : MonoBehaviour
     private void Awake()
     {
         InitializeSingleton();
+    }
+
+    private void Start()
+    {
         saveData.ForEach(x => x.Init());
         LoadAll();
     }

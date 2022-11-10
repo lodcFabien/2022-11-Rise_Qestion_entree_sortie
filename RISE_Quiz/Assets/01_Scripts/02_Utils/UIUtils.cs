@@ -8,7 +8,7 @@ public static class UIUtils
     public static List<string> GetLanguageOptionsList(Language language)
     {
         Language[] languageValues = (Language[])Enum.GetValues(typeof(Language));
-        var languages = new List<string>();
+        var options = new List<string>();
 
         foreach (var lv in languageValues)
         {
@@ -24,45 +24,57 @@ public static class UIUtils
                     break;
             }
 
-            languages.Add(l.ToUpper());
+            options.Add(l.ToUpper());
         }
 
-        return languages;
+        return options;
     }
 
     public static List<string> GetGroupOptionsList()
     {
         GroupLetter[] letterValues = (GroupLetter[])Enum.GetValues(typeof(GroupLetter));
-        var letters = new List<string>();
+        var options = new List<string>();
 
         foreach (var lv in letterValues)
         {
             string l = lv.ToString().ToUpper();
-            letters.Add(l);
+            options.Add(l);
         }
 
-        return letters;
+        return options;
+    }
+
+    public static List<string> GetTeamOptionsList(GroupConfig currentGroup)
+    {
+        var options = new List<string>();
+
+        foreach(var team in currentGroup.Teams)
+        {
+            options.Add(team.Name.ToUpper());
+        }
+
+        return options;
     }
 
     public static List<string> GetTerminalIDOptionsList(int teamCount, Language language)
     {
-        var ids = new List<string>();
+        var options = new List<string>();
 
         for (int i = 0; i < teamCount; i++)
         {
             switch (language)
             {
                 case Language.French:
-                    ids.Add($"BORNE #{i + 1}");
+                    options.Add($"BORNE #{i + 1}");
                     break;
                 case Language.English:
-                    ids.Add($"TERMINAL #{i + 1}");
+                    options.Add($"TERMINAL #{i + 1}");
                     break;
             }
             
         }
 
-        return ids;
+        return options;
     }
 
 }

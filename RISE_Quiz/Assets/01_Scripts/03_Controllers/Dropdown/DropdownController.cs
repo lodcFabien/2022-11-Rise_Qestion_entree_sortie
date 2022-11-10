@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public abstract class DropdownController : SaveableComponent
 {
     [SerializeField] protected TMP_Dropdown dropdown;
+
     public override void Init()
     {
         SetOptions(LocalizationManager.Instance.ActiveLanguage);

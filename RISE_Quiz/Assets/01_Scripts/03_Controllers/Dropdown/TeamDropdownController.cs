@@ -2,17 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeamDropdownController : MonoBehaviour
+public class TeamDropdownController : DropdownController
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Init()
     {
-        
+        base.Init();
+        GameManager.Instance.OnGroupChanged += UpdateOptions;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateOptions(GroupConfig config)
     {
-        
+        SetDropdownOptions(UIUtils.GetTeamOptionsList(config));
+    }
+
+    public override void SetOptions(Language language)
+    {
+        SetDropdownOptions(UIUtils.GetTeamOptionsList(GameManager.Instance.GetCurrentGroup()));
+        SetValue(0);
+    }
+
+    public override void SetValue(int valueIndex)
+    {
+        if (dropdown.value != valueIndex)
+        {
+            dropdown.value = valueIndex;
+        }
+
+        GameManager.Instance.SetTeam(valueIndex);
     }
 }
