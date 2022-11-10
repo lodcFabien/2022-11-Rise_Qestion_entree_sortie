@@ -7,17 +7,18 @@ public class TeamDropdownController : DropdownController
     public override void Init()
     {
         base.Init();
-        GameManager.Instance.OnGroupChanged += UpdateOptions;
-    }
-
-    private void UpdateOptions(Group config)
-    {
-        SetDropdownOptions(UIUtils.GetTeamOptionsList(config));
+        SetValue(0);
+        GameManager.Instance.OnTeamChanged += UpdateValue;
     }
 
     public override void SetOptions(Language language)
     {
-        SetDropdownOptions(UIUtils.GetTeamOptionsList(GameManager.Instance.GetCurrentGroup()));
+        SetDropdownOptions(UIUtils.GetTeamOptionsList(GameManager.Instance.Teams));
+    }
+
+    private void UpdateValue(int teamIndex)
+    {
+        dropdown.SetValueWithoutNotify(teamIndex);
     }
 
     public override void SetValue(int valueIndex)
@@ -27,11 +28,6 @@ public class TeamDropdownController : DropdownController
             dropdown.value = valueIndex;
         }
 
-        GameManager.Instance.SetTeam(valueIndex);
-    }
-
-    public override int SetDefaultValue()
-    {
-        return 0;
+        GameManager.Instance.SetTeamByDropdown(valueIndex);
     }
 }

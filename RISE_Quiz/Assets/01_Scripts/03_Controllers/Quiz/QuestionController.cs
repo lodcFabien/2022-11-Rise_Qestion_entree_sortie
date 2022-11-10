@@ -24,7 +24,7 @@ public class QuestionController : BaseController
     public bool CanBeValidated => Question.CanBeValidated();
     protected GameManager GameManager => GameManager.Instance;
 
-    public void Init(MultipleChoiceQuestion question)
+    public void Setup(MultipleChoiceQuestion question)
     {
         Question = question;
         view.Populate(Question.Text);
@@ -135,15 +135,31 @@ public class QuestionController : BaseController
         }
     }
 
-    public void ResetQuestion()
+    public void ResetQuestion(bool fullReset = false)
     {
         Question.ResetQuestion();
-        foreach(var answer in answers)
+
+        if (fullReset)
         {
-            answer.ResetAnswer();
+            foreach (var answer in answers)
+            {
+                Destroy(answer.gameObject);
+            }
+
+            answers = null;
+
+            confirmButton.Toggle(false);
+        }
+        else
+        {
+            foreach (var answer in answers)
+            {
+                answer.ResetAnswer();
+            }
+
+            confirmButton.Toggle(CanBeValidated);
         }
 
-        confirmButton.Toggle(CanBeValidated);
         validator.Toggle(false);
     }
 }

@@ -1,12 +1,13 @@
 using UnityEngine;
 
-[System.Serializable]
-public class Team
+[CreateAssetMenu(menuName = "ScriptableObjects/Quiz/Team")]
+public class Team : ScriptableObject
 {
     [SerializeField] private string teamNumber;
+    [SerializeField] private int teamID;
 
     // Internal, from 0 to 6
-    public int ID { get; private set; }
+    public int ID => teamID;
 
     // Only for Display, from 1 to 28
     public string Name => GetTeamName();
@@ -18,8 +19,9 @@ public class Team
         return language == Language.French ? $"ÉQUIPE {teamNumber}" : $"TEAM {teamNumber}";
     }
 
-    public void Init(int id)
+    public void Init(string teamNumber, int ID)
     {
-        ID = id;
+        this.teamNumber = teamNumber;
+        teamID = ID;
     }
 }

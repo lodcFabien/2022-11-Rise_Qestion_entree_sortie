@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class TerminalDropdownController : DropdownController
 {
-    public override int SetDefaultValue()
+    public override void Init()
     {
-        return 0;
+        base.Init();
+        SetValue(0);
     }
 
     public override void SetOptions(Language language)

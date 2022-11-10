@@ -1,13 +1,13 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameView : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private TMP_Text terminalText; 
     [SerializeField] private TMP_Text languageText;
-    [SerializeField] private TMP_Text groupText;
     [SerializeField] private TMP_Text teamText;
 
     [Header("Team Name")]
@@ -15,6 +15,12 @@ public class GameView : MonoBehaviour
 
     [Header("Dropdowns")]
     [SerializeField] private DropdownController[] dropdownControllers;
+
+    [Header("Secret Buttons")]
+    [SerializeField] private Button safranButton;
+    [SerializeField] private Button riseButton;
+
+    private bool canPressRise;
 
     public void Init()
     {
@@ -26,6 +32,8 @@ public class GameView : MonoBehaviour
         {
             dc.Init();
         }
+
+        TurnOffRise();
     }
 
     private void UpdateText(Language language)
@@ -34,12 +42,32 @@ public class GameView : MonoBehaviour
 
         terminalText.text = isFrench ? "ID BORNE" : "TERMINAL ID";
         languageText.text = isFrench ? "LANGUE" : "LANGUAGE";
-        groupText.text = isFrench ? "GROUPE" : "GROUP";
         teamText.text = isFrench ? "ÉQUIPE" : "TEAM";
     }
 
     public void SetTeamName(string name)
     {
         teamNameText.text = name;
+    }
+
+    public void OnRiseButton()
+    {
+        if(!canPressRise)
+        {
+            return;
+        }
+
+        GameManager.Instance.ResetEverything();
+    }
+
+    public void OnSafranButton()
+    {
+        canPressRise = true;
+        Invoke(nameof(TurnOffRise), 2f);
+    }
+
+    private void TurnOffRise()
+    {
+        canPressRise = false;
     }
 }

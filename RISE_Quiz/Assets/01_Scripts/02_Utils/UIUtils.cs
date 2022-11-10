@@ -44,11 +44,11 @@ public static class UIUtils
         return options;
     }
 
-    public static List<string> GetTeamOptionsList(Group currentGroup)
+    public static List<string> GetTeamOptionsList(Team[] teams)
     {
         var options = new List<string>();
 
-        foreach(var team in currentGroup.Teams)
+        foreach(var team in teams)
         {
             options.Add(team.Name.ToUpper());
         }

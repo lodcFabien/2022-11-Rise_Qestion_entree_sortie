@@ -44,17 +44,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TerminalConfig terminalConfig;
 
     [Header("Team Order & ID")]
-    [SerializeField] private Group currentGroup;
+    [SerializeField] private int currentTeamOrderIndex = -1;
     [SerializeField] private Team currentTeam;
     [SerializeField] private List<Team> sortedTeams;
-    [SerializeField] private int currentTeamOrderIndex = -1;
 
     [Header("Current Question")]
     [SerializeField] private QuestionController currentQuestion;
 
     public Action<QuizState> OnQuizStateChanged { get; set; }
-    public Action<Group> OnGroupChanged { get; set; }
+    public Action<int> OnTeamChanged { get; set; }
     public QuizState State => state;
+    public Team[] Teams => data.Teams;
     
     private bool EntryQuestionDisplayed => state == QuizState.EntryQuestion ||
         state == QuizState.Verifying && currentQuestion == entryQuestion;
@@ -84,17 +84,17 @@ public class GameManager : MonoBehaviour
     {
         terminalID = id;
         terminalConfig = data.GetTerminalFromID(terminalID);
+        SortTeams();
 
+        currentTeamOrderIndex = 0;
+        SetTeam();
     }
 
     private void Setup()
     {
-        // Sort teams based on terminal config
-        SortTeams();
-
         // Populate Interface
-        entryQuestion.Init(terminalConfig.EntryQuestion);
-        exitQuestion.Init(terminalConfig.ExitQuestion);
+        entryQuestion.Setup(terminalConfig.EntryQuestion);
+        exitQuestion.Setup(terminalConfig.ExitQuestion);
         entryQuestion.Toggle(false);
         exitQuestion.Toggle(false);
         currentQuestion = null;
@@ -160,8 +160,15 @@ public class GameManager : MonoBehaviour
                 break;
 
             case QuizState.DisplayingHint:
-                SetNextTeam();
-                SetState(QuizState.WaitingForStart);
+                if(NoMoreTeams())
+                {
+                    Debug.Log("No more teams!");
+                    ResetEverything();
+                }
+                else
+                {
+                    SetNextTeam();
+                }
                 break;
 
             case QuizState.EntryQuestion:
@@ -172,6 +179,41 @@ public class GameManager : MonoBehaviour
             case QuizState.Verifying:
                 break;
         }
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public void SetTeamByDropdown(int index)
+    {
+        currentTeam = data.Teams[index];
+        currentTeamOrderIndex = sortedTeams.IndexOf(currentTeam);
+        view.SetTeamName(currentTeam.Name);
+    }
+
+    public void ResetEverything()
+    {
+        entryQuestion.ResetQuestion(true);
+        exitQuestion.ResetQuestion(true);
+        SetState(QuizState.Setup);
+    }
+
+    #endregion
+
+    #region Utils
+
+    private void SortTeams()
+    {
+        sortedTeams.Clear();
+        sortedTeams = data.GetSortedTeams(terminalID);
+    }
+
+    private void SetTeam()
+    {
+        currentTeam = sortedTeams[currentTeamOrderIndex];
+        view.SetTeamName(currentTeam.Name);
+        OnTeamChanged?.Invoke(Array.IndexOf(Teams, currentTeam));
     }
 
     private void VerifyQuestion()
@@ -189,79 +231,15 @@ public class GameManager : MonoBehaviour
 
     private void SetNextTeam()
     {
-        if (currentTeamOrderIndex == sortedTeams.Count - 1)
-        {
-            Debug.Log("No more teams!");
-            SetNextGroup();
-        }
-        else
-        {
-            currentTeamOrderIndex++;
-            SetTeam();
-        }
-
-        SetState(QuizState.Setup);
-    }
-
-    private void SetNextGroup()
-    {
-        switch (currentGroup.GroupLetter)
-        {
-            case GroupLetter.A:
-                SetGroup(data.GetGroupFromLetter(GroupLetter.B));
-                break;
-            case GroupLetter.B:
-                SetGroup(data.GetGroupFromLetter(GroupLetter.C));
-                break;
-            case GroupLetter.C:
-                SetGroup(data.GetGroupFromLetter(GroupLetter.D));
-                break;
-            case GroupLetter.D:
-                SetGroup(data.GetGroupFromLetter(GroupLetter.A));
-                break;
-        }
-    }
-
-    #endregion
-
-    #region Utils
-
-    private void SetGroup(Group newGroupConfig)
-    {
-        currentGroup = newGroupConfig;
-        SortTeams();
-        if (currentTeamOrderIndex == -1) currentTeamOrderIndex = 0;
+        currentTeamOrderIndex++;
         SetTeam();
-
-        OnGroupChanged?.Invoke(currentGroup);
+        SetState(QuizState.WaitingForStart);
     }
 
-    private void SortTeams()
+    private bool NoMoreTeams()
     {
-        sortedTeams.Clear();
-        sortedTeams = terminalConfig.GetSortedTeams(currentGroup);
+        return currentTeamOrderIndex == sortedTeams.Count - 1;
     }
-
-    private void SetTeam()
-    {
-        currentTeam = sortedTeams[currentTeamOrderIndex];
-        view.SetTeamName(currentTeam.Name);
-    }
-
-    public void SetGroup(GroupLetter letter)
-    {
-        SetGroup(data.GetGroupFromLetter(letter));
-    }
-
-    public void SetTeam(int index)
-    {
-        currentTeamOrderIndex = index;
-        SetTeam();
-
-        Debug.Log($"SetTeam() was called with {index} as parameter. currentTeam is ID#{currentTeam.ID} and Name {currentTeam.Name}");
-    }
-
-    public Group GetCurrentGroup() { return currentGroup; }
 
     #endregion
 

@@ -21,15 +21,13 @@ public abstract class DropdownController : MonoBehaviour
 
     public abstract void SetOptions(Language language);
     public abstract void SetValue(int valueIndex);
-    public abstract int SetDefaultValue();
 
     public void SetDropdownOptions(List<string> options)
     {
-        int currentValue = SetDefaultValue();
+        int currentValue = dropdown.value;
         dropdown.ClearOptions();
         dropdown.AddOptions(options);
         dropdown.value = currentValue;
         dropdown.RefreshShownValue();
-        dropdown.onValueChanged.Invoke(currentValue);
     }
 }

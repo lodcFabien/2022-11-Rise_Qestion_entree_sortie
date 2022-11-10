@@ -11,11 +11,11 @@ public class Group : ScriptableObject
     public GroupLetter GroupLetter => group;
     public List<Team> Teams => teams;
 
-    public void Init()
-    {
-        for(int i = 0; i < teams.Count; i++)
-        {
-            teams[i].Init(i);
-        }
-    }
+    //public void Init()
+    //{
+    //    for(int i = 0; i < teams.Count; i++)
+    //    {
+    //        teams[i].Init(i);
+    //    }
+    //}
 }

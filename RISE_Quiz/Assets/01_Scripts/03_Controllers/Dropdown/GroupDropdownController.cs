@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class GroupDropdownController : DropdownController
 {
-    public override int SetDefaultValue()
-    {
-        return (int)GroupLetter.A;
-    }
-
     public override void SetOptions(Language language)
     {
         SetDropdownOptions(UIUtils.GetGroupOptionsList());
@@ -23,6 +18,6 @@ public class GroupDropdownController : DropdownController
         }
 
         GroupLetter group = (GroupLetter)valueIndex;
-        GameManager.Instance.SetGroup(group);
+        //GameManager.Instance.SetGroup(group);
     }
 }
