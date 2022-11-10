@@ -63,3 +63,7 @@ public class AnswerController : ButtonController, ISelectable
         else Select();
     }
 }
+public enum AnswerState
+{
+
+}
