@@ -3,6 +3,5 @@ using UnityEngine;
 
 public abstract class ButtonView : BaseView
 {
-
-
+    [SerializeField] protected Animator animator;
 }

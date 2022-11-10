@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         exitQuestion.Toggle(false);
 
         // Set First Group and First Team
-        SetGroup(data.GetGroupFromLetter(GroupLetter.A));
+        SetGroup(currentGroup, true);
 
         SetState(QuizState.WaitingForStart);
     }
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case QuizState.Ended:
-                SetNextGroup();
+                SetNextTeam();
                 SetState(QuizState.WaitingForStart);
                 break;
 
@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
         if (currentTeamOrderIndex == sortedTeams.Count - 1)
         {
             Debug.Log("No more teams!");
-            Debug.Log("Game Finished.");
+            SetNextGroup();
             return;
         }
 
@@ -263,16 +263,25 @@ public class GameManager : MonoBehaviour
 
     #region Utils
 
-    public void SetGroup(GroupConfig newGroupConfig)
+    private void SetGroup(GroupConfig newGroupConfig, bool alsoSetTeams = true)
     {
         currentGroup = newGroupConfig;
-        sortedTeams.Clear();
-        sortedTeams = currentGroup.GetSortedTeams(terminalConfig.TeamOrder);
-        currentTeamOrderIndex = 0;
-        currentQuestion = null;
-        SetTeam();
+
+        if(alsoSetTeams)
+        {
+            sortedTeams.Clear();
+            sortedTeams = currentGroup.GetSortedTeams(terminalConfig.TeamOrder);
+            currentTeamOrderIndex = 0;
+            currentQuestion = null;
+            SetTeam();
+        }
 
         OnGroupChanged?.Invoke(currentGroup);
+    }
+
+    public void SetGroup(GroupLetter letter)
+    {
+        SetGroup(data.GetGroupFromLetter(letter), false);
     }
 
     private void SetTeam()

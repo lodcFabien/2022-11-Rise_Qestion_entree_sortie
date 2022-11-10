@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerminalDropdownController : DropdownController
+public class GroupDropdownController : DropdownController
 {
-    public override void Init()
-    {
-        base.Init();
-        SetValue(0);
-    }
-
     public override void SetOptions(Language language)
     {
-        SetDropdownOptions(UIUtils.GetTerminalIDOptionsList(7, language));
+        SetDropdownOptions(UIUtils.GetGroupOptionsList());
     }
 
     public override void SetValue(int valueIndex)
@@ -22,6 +16,7 @@ public class TerminalDropdownController : DropdownController
             dropdown.value = valueIndex;
         }
 
-        GameManager.Instance.SetTerminalID(valueIndex + 1);
+        GroupLetter group = (GroupLetter)valueIndex;
+        GameManager.Instance.SetGroup(group);
     }
 }

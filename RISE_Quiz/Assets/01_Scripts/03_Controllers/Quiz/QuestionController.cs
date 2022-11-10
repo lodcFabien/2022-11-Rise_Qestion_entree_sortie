@@ -4,11 +4,13 @@ using UnityEngine;
 public class QuestionController : BaseController
 {
     [SerializeField] protected AnswerController answerPrefab;
-    [SerializeField] protected Transform confirmButton;
     [SerializeField] protected TextFitter textFitter;
     [SerializeField] protected Transform answerParent;
     [SerializeField] protected float waitTime = 1f;
     [SerializeField] protected float heightCap = 250f;
+
+    [Header("Confirm Button")]
+    [SerializeField] protected MenuButtonController confirmButton;
 
     protected AnswerController[] answers;
     protected MultipleChoiceQuestion Question { get; set; }
@@ -29,14 +31,15 @@ public class QuestionController : BaseController
             answers[i].gameObject.name += $" #{i}";
         }
 
-        confirmButton.SetAsLastSibling();
-
-        foreach(var answer in answers)
+        foreach (var answer in answers)
         {
             answer.OnSelect += ActionOnAnswerSelected;
+            answer.OnDeselect += ActionOnAnswerDeselected;
         }
 
         textFitter.FitVerticallyToText(heightCap);
+
+        confirmButton.transform.SetAsLastSibling();
     }
 
     protected void ActionOnAnswerSelected(AnswerController trigger)
@@ -48,10 +51,20 @@ public class QuestionController : BaseController
                 answer.DeselectWithNotify();
             }
         }
+
+        confirmButton.Toggle(CanBeValidated);
     }
+
+    protected void ActionOnAnswerDeselected(AnswerController trigger)
+    {
+        confirmButton.Toggle(CanBeValidated);
+    }
+
 
     public QuestionState Verify()
     {
+        confirmButton.Toggle(false);
+
         AnswerAnimationEnded = false;
 
         Question.Verify();
@@ -63,6 +76,7 @@ public class QuestionController : BaseController
 
         Invoke(nameof(EndAnimation), waitTime);
 
+        confirmButton.Toggle(true);
         return Question.State;
     }
 
@@ -73,6 +87,8 @@ public class QuestionController : BaseController
         {
             answer.ResetAnswer();
         }
+
+        confirmButton.Toggle(CanBeValidated);
     }
 
     private void EndAnimation()

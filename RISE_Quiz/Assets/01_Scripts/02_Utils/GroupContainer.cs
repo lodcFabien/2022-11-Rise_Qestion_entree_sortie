@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GroupContainer : MonoBehaviour
 {
-    [SerializeField] private GroupConfig group;
+    [SerializeField] private GroupLetter group;
 
     public void SetGroup()
     {

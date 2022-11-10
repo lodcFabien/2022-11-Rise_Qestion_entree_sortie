@@ -7,8 +7,7 @@ public class GameView : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private TMP_Text terminalText; 
     [SerializeField] private TMP_Text languageText;
-    [SerializeField] private LanguageDropdownController languageDropdownController;
-    [SerializeField] private TerminalDropdownController terminalDropdownController;
+    [SerializeField] private TMP_Text groupText;
 
     [Header("Team Name")]
     [SerializeField] private TMP_Text teamNameText;
@@ -25,9 +24,7 @@ public class GameView : MonoBehaviour
 
         terminalText.text = isFrench ? "ID BORNE" : "TERMINAL ID";
         languageText.text = isFrench ? "LANGUE" : "LANGUAGE";
-
-        languageDropdownController.Init();
-        terminalDropdownController.Init();
+        groupText.text = isFrench ? "GROUPE" : "GROUP";
     }
 
     public void SetTeamName(string name)

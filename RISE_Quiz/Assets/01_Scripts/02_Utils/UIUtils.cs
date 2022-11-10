@@ -30,6 +30,20 @@ public static class UIUtils
         return languages;
     }
 
+    public static List<string> GetGroupOptionsList()
+    {
+        GroupLetter[] letterValues = (GroupLetter[])Enum.GetValues(typeof(GroupLetter));
+        var letters = new List<string>();
+
+        foreach (var lv in letterValues)
+        {
+            string l = lv.ToString().ToUpper();
+            letters.Add(l);
+        }
+
+        return letters;
+    }
+
     public static List<string> GetTerminalIDOptionsList(int teamCount, Language language)
     {
         var ids = new List<string>();
