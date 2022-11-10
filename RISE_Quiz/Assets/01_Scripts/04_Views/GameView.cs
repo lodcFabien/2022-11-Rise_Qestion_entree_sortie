@@ -16,6 +16,7 @@ public class GameView : MonoBehaviour
     {
         UpdateText(LocalizationManager.Instance.ActiveLanguage);
         LocalizationManager.Instance.OnLanguageChanged += UpdateText;
+        SetTeamName("");
     }
 
     private void UpdateText(Language language)

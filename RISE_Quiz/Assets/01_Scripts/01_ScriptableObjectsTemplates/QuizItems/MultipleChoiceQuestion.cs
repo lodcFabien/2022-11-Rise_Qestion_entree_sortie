@@ -29,17 +29,18 @@ public class MultipleChoiceQuestion : Question
         return false;
     }
 
-    public override void Verify()
+    public override QuestionState Verify()
     {
         foreach (MultipleChoiceAnswer answer in answers)
         {
             if ((answer.IsCorrect() && !answer.IsChecked) || (!answer.IsCorrect() && answer.IsChecked))
             {
                 SetState(QuestionState.AnsweredWrong);
-                return;
+                return state;
             }
         }
 
         SetState(QuestionState.AnsweredCorrectly);
+        return state;
     }
 }

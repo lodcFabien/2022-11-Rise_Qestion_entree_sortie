@@ -145,7 +145,6 @@ RectTransform:
   m_Children:
   - {fileID: 894979694521545884}
   - {fileID: 894979693598366779}
-  - {fileID: 2739554885279641218}
   m_Father: {fileID: 131706081477296190}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -238,10 +237,11 @@ MonoBehaviour:
     type: 3}
   textFitter: {fileID: 3518776983852386303}
   answerParent: {fileID: 894979693598366779}
-  waitTime: 1
   heightCap: 150
   confirmButton: {fileID: 8783726255936217935}
   validator: {fileID: 3967827092952451768}
+  suspenseTime: 1.5
+  animTime: 3
 --- !u!114 &894979693856018011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,13 +516,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5032258136506645101}
-  m_Father: {fileID: 894979693644460131}
-  m_RootOrder: 2
+  m_Father: {fileID: 8783726255936217933}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 50}
+  m_SizeDelta: {x: 700, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3967827092952451768
 MonoBehaviour:
@@ -712,7 +712,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

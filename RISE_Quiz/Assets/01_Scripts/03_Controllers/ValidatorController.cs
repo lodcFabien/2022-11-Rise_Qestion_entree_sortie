@@ -21,6 +21,7 @@ public class ValidatorController : BaseController
             newText = isFrench ? "INCORRECT..." : "WRONG...";
         }
 
+        Debug.Log($"Correct? {isCorrect} | Language: {language} | Populating view with {newText}");
         View.Populate(newText);
     }
 

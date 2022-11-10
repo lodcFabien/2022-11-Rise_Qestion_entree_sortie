@@ -12,6 +12,7 @@ public class AnswerController : ButtonController, ISelectable
     public Action<AnswerController> OnSelect { get ; set; }
     public Action<AnswerController> OnDeselect { get ; set; }
     public bool IsSelected { get; protected set; }
+    public AnswerControllerState State => state;
 
     public void Init(MultipleChoiceAnswer answer)
     {
@@ -53,21 +54,13 @@ public class AnswerController : ButtonController, ISelectable
 
     public void Verify()
     {
-        if (state == AnswerControllerState.Unselected)
+        if (Answer.IsCorrect())
         {
-            SetState(AnswerControllerState.Hidden);
+            SetState(AnswerControllerState.Correct);
         }
-
-        else if (state == AnswerControllerState.Selected)
+        else
         {
-            if (Answer.IsCorrect())
-            {
-                SetState(AnswerControllerState.Correct);
-            }
-            else
-            {
-                SetState(AnswerControllerState.Incorrect);
-            }
+            SetState(AnswerControllerState.Incorrect);
         }
     }
 
@@ -91,7 +84,7 @@ public class AnswerController : ButtonController, ISelectable
         SetState(AnswerControllerState.Unselected);
     }
 
-    private void SetState(AnswerControllerState newState)
+    public void SetState(AnswerControllerState newState)
     {
         state = newState;
         View.SetAnimatorState((int)state);

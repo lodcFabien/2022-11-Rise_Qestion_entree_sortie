@@ -8,7 +8,7 @@ public abstract class Question : QuizItem
     [SerializeField] protected QuestionState state = QuestionState.Unanswered;
     public int ID => id;
     public QuestionState State => state;
-    public abstract void Verify();
+    public abstract QuestionState Verify();
     public abstract bool CanBeValidated();
 
     public virtual void ResetQuestion()

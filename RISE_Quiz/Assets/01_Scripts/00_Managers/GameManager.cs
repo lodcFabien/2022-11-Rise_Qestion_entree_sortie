@@ -35,9 +35,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PanelController hintPanel;
     [SerializeField] private PanelController endPanel;
 
-    [Header("Settings")]
-    [SerializeField] private float waitTime = 1.5f;
-
     // DYNAMIC
     [Header("Dynamically Set")]
     [Header("Terminal")]
@@ -194,37 +191,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        StartCoroutine(VerifyCoroutine());
-    }
-
-    private IEnumerator VerifyCoroutine()
-    {
-        bool answerIsCorrect = AnsweredCorrectly(currentQuestion);
-        yield return new WaitForSeconds(waitTime);
-
-        if (answerIsCorrect)
-        {
-            if (currentQuestion == entryQuestion)
-            {
-                SetState(QuizState.WaitingForExpertSpeech);
-            }
-            else
-            {
-                SetState(QuizState.DisplayingHint);
-            }
-        }
-
-        else
-        {
-            if (currentQuestion == entryQuestion)
-            {
-                SetState(QuizState.EntryQuestion);
-            }
-            else
-            {
-                SetState(QuizState.ExitQuestion);
-            }
-        }
+        currentQuestion.Verify(currentQuestion == entryQuestion ? 0 : 1);
     }
 
     public void SetNextTeam()
@@ -233,14 +200,17 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("No more teams!");
             SetNextGroup();
-            return;
+        }
+        else
+        {
+            currentTeamOrderIndex++;
+            SetTeam();
         }
 
-        currentTeamOrderIndex++;
-        SetTeam();
+        SetState(QuizState.Setup);
     }
 
-    public void SetNextGroup()
+    private void SetNextGroup()
     {
         switch (currentGroup.GroupLetter)
         {
@@ -288,11 +258,6 @@ public class GameManager : MonoBehaviour
     {
         currentTeam = sortedTeams[currentTeamOrderIndex];
         view.SetTeamName(currentTeam.Name);
-    }
-
-    private bool AnsweredCorrectly(QuestionController question)
-    {
-        return question.Verify() == QuestionState.AnsweredCorrectly;
     }
 
     #endregion
