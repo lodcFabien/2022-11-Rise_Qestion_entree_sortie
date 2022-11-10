@@ -12,6 +12,9 @@ public class QuestionController : BaseController
     [Header("Confirm Button")]
     [SerializeField] protected MenuButtonController confirmButton;
 
+    [Header("Validator")]
+    [SerializeField] protected ValidatorController validator; 
+
     protected AnswerController[] answers;
     protected MultipleChoiceQuestion Question { get; set; }
     public bool CanBeValidated => Question.CanBeValidated();
@@ -38,7 +41,6 @@ public class QuestionController : BaseController
         }
 
         textFitter.FitVerticallyToText(heightCap);
-
         confirmButton.transform.SetAsLastSibling();
     }
 
@@ -60,24 +62,29 @@ public class QuestionController : BaseController
         confirmButton.Toggle(CanBeValidated);
     }
 
-
     public QuestionState Verify()
     {
         confirmButton.Toggle(false);
-
         AnswerAnimationEnded = false;
 
         Question.Verify();
 
-        foreach(var answer in answers)
+        VerifyAnswers();
+        validator.SetText(Question.State == QuestionState.AnsweredCorrectly, LocalizationManager.Instance.ActiveLanguage);
+        validator.Toggle(true);
+
+        AnswerAnimationEnded = true;
+        confirmButton.Toggle(true);
+
+        return Question.State;
+    }
+
+    private void VerifyAnswers()
+    {
+        foreach (var answer in answers)
         {
             answer.Verify();
         }
-
-        Invoke(nameof(EndAnimation), waitTime);
-
-        confirmButton.Toggle(true);
-        return Question.State;
     }
 
     public void ResetQuestion()
@@ -89,10 +96,6 @@ public class QuestionController : BaseController
         }
 
         confirmButton.Toggle(CanBeValidated);
-    }
-
-    private void EndAnimation()
-    {
-        AnswerAnimationEnded = true;
+        validator.Toggle(false);
     }
 }
