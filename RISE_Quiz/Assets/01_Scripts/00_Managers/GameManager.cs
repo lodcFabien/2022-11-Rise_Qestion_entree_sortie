@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PanelController hintPanel;
     [SerializeField] private PanelController endPanel;
 
+    [Header("Settings")]
+    [SerializeField] private float waitTime = 1.5f;
+
     // DYNAMIC
     [Header("Dynamically Set")]
     [Header("Terminal")]
@@ -197,7 +200,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator VerifyCoroutine()
     {
         bool answerIsCorrect = AnsweredCorrectly(currentQuestion);
-        yield return new WaitUntil(() => currentQuestion.AnswerAnimationEnded);
+        yield return new WaitForSeconds(waitTime);
 
         if (answerIsCorrect)
         {
