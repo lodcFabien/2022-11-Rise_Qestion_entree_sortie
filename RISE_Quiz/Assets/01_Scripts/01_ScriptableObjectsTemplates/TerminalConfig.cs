@@ -15,7 +15,6 @@ public class TerminalConfig : ScriptableObject
     private int ExitQID => EntryQID + 1;
     public MultipleChoiceQuestion EntryQuestion => entryQuestion;
     public MultipleChoiceQuestion ExitQuestion => exitQuestion;
-    public string[] TeamHints => teamHints;
 
     public void Init(List<MultipleChoiceQuestion> questions, string[] hints)
     {
@@ -35,6 +34,11 @@ public class TerminalConfig : ScriptableObject
         int[] teamOrder = QuizUtils.GetTeamOrderFromTerminalID(id);
         List<Team> teams = group.Teams;
         return teamOrder.Select(i => teams[i]).ToList();
+    }
+
+    public string GetHint(int teamID)
+    {
+        return teamHints[teamID];
     }
 }
 

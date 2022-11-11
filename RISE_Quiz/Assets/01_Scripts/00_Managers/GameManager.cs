@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PanelController setupPanel;
     [SerializeField] private PanelController waitForStartPanel;
     [SerializeField] private PanelController expertSpeechPanel;
-    [SerializeField] private PanelController hintPanel;
+    [SerializeField] private HintPanelController hintPanel;
 
     // DYNAMIC
     [Header("Dynamically Set")]
@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
                 currentQuestion = exitQuestion;
                 break;
             case QuizState.DisplayingHint:
+                hintPanel.SetHint(terminalConfig.GetHint(currentTeam.ID), LocalizationManager.Instance.ActiveLanguage, GetHintNumber());
                 break;
         }
     }
@@ -214,6 +215,7 @@ public class GameManager : MonoBehaviour
         currentTeam = sortedTeams[currentTeamOrderIndex];
         view.SetTeamName(currentTeam.Name);
         OnTeamChanged?.Invoke(Array.IndexOf(Teams, currentTeam));
+        //Debug.Log($"Team ID #{currentTeam.ID}, Name{currentTeam.Name}, will obtain its hint number {currentTeamOrderIndex}");
     }
 
     private void VerifyQuestion()
@@ -239,6 +241,11 @@ public class GameManager : MonoBehaviour
     private bool NoMoreTeams()
     {
         return currentTeamOrderIndex == sortedTeams.Count - 1;
+    }
+
+    private int GetHintNumber()
+    {
+        return currentTeamOrderIndex+1;
     }
 
     #endregion

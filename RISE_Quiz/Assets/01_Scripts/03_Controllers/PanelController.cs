@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PanelController : MonoBehaviour, IToggleable
 {
-    [SerializeField] private GameObject panel;
+    [SerializeField] protected GameObject panel;
 
     public void Toggle(bool toggle)
     {
