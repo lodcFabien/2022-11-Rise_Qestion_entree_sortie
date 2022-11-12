@@ -161,7 +161,8 @@ public class GameManager : MonoBehaviour
                 break;
 
             case QuizState.DisplayingHint:
-                if(NoMoreTeams())
+                hintPanel.HideHint();
+                if (NoMoreTeams())
                 {
                     Debug.Log("No more teams!");
                     ResetEverything();

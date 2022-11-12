@@ -241,7 +241,7 @@ MonoBehaviour:
   confirmButton: {fileID: 8783726255936217935}
   validator: {fileID: 3967827092952451768}
   suspenseTime: 1.5
-  animTime: 3
+  animTime: 1.75
 --- !u!114 &894979693856018011
 MonoBehaviour:
   m_ObjectHideFlags: 0
