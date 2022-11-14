@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class PositionByQuizState : MonoBehaviour
 {
-    [SerializeField] private Transform positionObject;
+    [SerializeField] private RectTransform objectTransform;
     [SerializeField] private List<StatePosition> statePositions;
 
     protected void Position(QuizState state)
     {
         var parent = statePositions.Find(x => x.States.Contains(state)).Transform;
-        positionObject.SetParent(parent);
-        positionObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        objectTransform.SetParent(parent);
+        objectTransform.anchoredPosition = Vector2.zero;
     }
 
     private void Awake()
