@@ -3,19 +3,38 @@ using UnityEngine;
 
 public class HintPanelController : PanelController
 {
+    [SerializeField] protected GameObject spritePanel;
+
     [Header("Text")]
     [SerializeField] protected TMP_Text hintText;
     [SerializeField] protected TMP_Text hintNumber;
     [SerializeField] protected TMP_Text hintLetter;
 
     [Header("Animation")]
-    [SerializeField] protected GameObject spritePanel;
-    [SerializeField] protected Animator animator;
+    [SerializeField] protected AnimationController spriteAnimator;
+    [SerializeField] protected AnimationController waveAnimator;
+
+    [Header("Confirm Button")]
+    [SerializeField] protected GameObject confirmButton;
+
+    private void Start()
+    {
+        spriteAnimator.OnEventTriggered += ActionOnSpriteEventTriggered;
+        spriteAnimator.OnEndEventTriggered += ActionOnSpriteEndEventTriggered;
+    }
+
+    private void OnDestroy()
+    {
+        spriteAnimator.OnEventTriggered -= ActionOnSpriteEventTriggered;
+        spriteAnimator.OnEndEventTriggered -= ActionOnSpriteEndEventTriggered;
+    }
 
     public override void Toggle(bool toggle)
     {
         base.Toggle(toggle);
         spritePanel.SetActive(toggle);
+        
+        confirmButton.SetActive(false);
     }
 
     public void SetHint(string letter, Language language, int hintCount)
@@ -29,11 +48,22 @@ public class HintPanelController : PanelController
 
     public void ShowHint()
     {
-        animator.SetBool("visible", true);
+        spriteAnimator.ToggleAnim(true);
     }
 
     public void HideHint()
     {
-        animator.SetBool("visible", false);
+        spriteAnimator.ToggleAnim(false);
     }
+
+    private void ActionOnSpriteEventTriggered()
+    {
+        waveAnimator.TriggerAnim();
+    }
+
+    private void ActionOnSpriteEndEventTriggered()
+    {
+        confirmButton.SetActive(true);
+    }
+
 }

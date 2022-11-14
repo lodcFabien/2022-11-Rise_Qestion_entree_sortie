@@ -143,7 +143,7 @@ public class QuestionController : BaseController
         {
             foreach (var answer in answers)
             {
-                Destroy(answer.gameObject);
+                if(answer != null) Destroy(answer.gameObject);
             }
 
             answers = null;
