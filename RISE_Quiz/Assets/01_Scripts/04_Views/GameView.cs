@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,8 @@ public class GameView : MonoBehaviour
     [SerializeField] private Button riseButton;
 
     private bool canPressRise;
+    private Coroutine quit;
+    private int clickCounter = 0;
 
     public void Init()
     {
@@ -64,6 +67,32 @@ public class GameView : MonoBehaviour
     {
         canPressRise = true;
         Invoke(nameof(TurnOffRise), 2f);
+    }
+
+    public void OnSecretQuitButton()
+    {
+        if(quit != null)
+        {
+            StopCoroutine(quit);
+            quit = null;
+        }
+
+        clickCounter++;
+        Debug.Log($"clicks: {clickCounter}");
+
+        if (clickCounter == 3)
+        {
+            Debug.Log("Quitting.");
+            Application.Quit();
+        }
+
+        quit = StartCoroutine(ResetClickCoroutine());
+    }
+
+    private IEnumerator ResetClickCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        clickCounter = 0;
     }
 
     private void TurnOffRise()
