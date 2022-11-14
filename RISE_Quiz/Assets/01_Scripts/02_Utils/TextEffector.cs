@@ -1,10 +1,49 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class TextScrambler : MonoBehaviour
+public class TextEffector : MonoBehaviour
 {
+    [Header("Wobble Settings")]
+    [SerializeField] protected TMP_Text text;
+    [SerializeField] protected float wobbleFactor = 2.8f; 
+
+    protected Mesh mesh;
+    protected Vector3[] vertices;
+
+    private void Update()
+    {
+        Wobble();
+    }
+
+    protected Vector2 GetWobbleEffect(float time, float factor)
+    {
+        return new Vector2(Mathf.Sin(time * factor), Mathf.Cos(time * factor));
+    }
+
+    protected void Wobble()
+    {
+        UpdateTextMesh();
+
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            Vector3 offset = GetWobbleEffect((Time.time + i), wobbleFactor);
+            vertices[i] = vertices[i] + offset;
+        }
+
+        mesh.vertices = vertices;
+        text.canvasRenderer.SetMesh(mesh);
+    }
+
+    private void UpdateTextMesh()
+    {
+        text.ForceMeshUpdate();
+        mesh = text.mesh;
+        vertices = mesh.vertices;
+    }
+
     public string ScrambleWord(string word)
     {
         char[] chars = new char[word.Length];
