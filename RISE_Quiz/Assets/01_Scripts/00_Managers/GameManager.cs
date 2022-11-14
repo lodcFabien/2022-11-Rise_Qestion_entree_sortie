@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Panel Controllers")]
     [SerializeField] private PanelController setupPanel;
-    [SerializeField] private PanelController waitForStartPanel;
-    [SerializeField] private PanelController expertSpeechPanel;
+    [SerializeField] private WaitPanelController waitForStartPanel;
+    [SerializeField] private WaitPanelController expertSpeechPanel;
     [SerializeField] private HintPanelController hintPanel;
 
     // DYNAMIC
