@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 78247356}
   - component: {fileID: 78247358}
   m_Layer: 5
-  m_Name: CTRL_GameView
+  m_Name: CTRL_Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5327,7 +5327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: b2a7b3f37c8c320458570deb27d88f17, type: 2}
-  view: {fileID: 78247356}
+  overlay: {fileID: 78247356}
   entryQuestion: {fileID: 416450723}
   exitQuestion: {fileID: 707099011}
   setupPanel: {fileID: 469958935}

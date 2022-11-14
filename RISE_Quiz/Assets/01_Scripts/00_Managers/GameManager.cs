@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Data data;
 
     [Header("UI")]
-    [SerializeField] private GameView view;
+    [SerializeField] private OverlayController overlay;
 
     [Header("Question Controllers")]
     [SerializeField] private QuestionController entryQuestion;
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        view.Init();
+        overlay.Init();
         SetState(QuizState.Setup);
     }
 
@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour
     {
         currentTeam = data.Teams[index];
         currentTeamOrderIndex = sortedTeams.IndexOf(currentTeam);
-        view.SetTeamName(currentTeam.Name);
+        overlay.SetTeamName(currentTeam.Name);
     }
 
     public void ResetEverything()
@@ -214,7 +214,7 @@ public class GameManager : MonoBehaviour
     private void SetTeam()
     {
         currentTeam = sortedTeams[currentTeamOrderIndex];
-        view.SetTeamName(currentTeam.Name);
+        overlay.SetTeamName(currentTeam.Name);
         OnTeamChanged?.Invoke(Array.IndexOf(Teams, currentTeam));
         //Debug.Log($"Team ID #{currentTeam.ID}, Name{currentTeam.Name}, will obtain its hint number {currentTeamOrderIndex}");
     }

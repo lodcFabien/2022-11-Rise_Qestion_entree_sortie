@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameView : MonoBehaviour
+public class OverlayController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private TMP_Text terminalText; 
