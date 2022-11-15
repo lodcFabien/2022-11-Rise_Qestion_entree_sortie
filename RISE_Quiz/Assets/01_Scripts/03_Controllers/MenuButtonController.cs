@@ -1,4 +1,4 @@
-using Newtonsoft.Json.Serialization;
+using System;
 using UnityEngine;
 
 public class MenuButtonController : ButtonController
@@ -7,6 +7,8 @@ public class MenuButtonController : ButtonController
 
     protected MenuButtonView View => view as MenuButtonView;
     protected bool hasDoneInit = false;
+
+    public Action OnClickEvent { get; set; }
 
     private void OnEnable()
     {
@@ -31,6 +33,7 @@ public class MenuButtonController : ButtonController
 
     public void OnClick()
     {
+        OnClickEvent?.Invoke();
         View.OnClick();
     }
 

@@ -6,15 +6,26 @@ using UnityEngine;
 public class TextScrambler : MonoBehaviour
 {
     [SerializeField] protected List<TMP_Text> texts;
+    [SerializeField] protected LocalizationData ld;
 
     protected string referenceWord;
     protected string scrambledWord;
     protected char[] chars;
 
-    private void Awake()
+    public void Init(Language language)
     {
+        UpdateLanguage(language);
+    }
+
+    public void UpdateLanguage(Language language)
+    {
+        for (int i = 0; i < texts.Count; i++)
+        {
+            texts[i].text = ld.GetTranslation(language);
+        }
         referenceWord = texts[0].text;
     }
+
 
     protected static int[] GenerateUniqueNumbers(int minValue, int maxValue)
     {

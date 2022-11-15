@@ -26,6 +26,8 @@ public class QuestionController : BaseController
 
     public void Setup(MultipleChoiceQuestion question)
     {
+        confirmButton.OnClickEvent += DeactivateAnswers;
+
         Question = question;
         view.Populate(Question.Text);
 
@@ -46,6 +48,11 @@ public class QuestionController : BaseController
 
         textFitter.FitVerticallyToText(heightCap);
         confirmButton.transform.SetAsLastSibling();
+    }
+
+    private void OnDestroy()
+    {
+        confirmButton.OnClickEvent -= DeactivateAnswers;
     }
 
     protected void ActionOnAnswerSelected(AnswerController trigger)
@@ -69,6 +76,24 @@ public class QuestionController : BaseController
     public void Verify(int currentQuestionIndex)
     {
         StartCoroutine(VerifyCoroutine(currentQuestionIndex));
+    }
+
+    public void DeactivateAnswers()
+    {
+        ToggleAnswersInteractability(false);
+    }
+
+    public void ActivateAnswers()
+    {
+        ToggleAnswersInteractability(true);
+    }
+
+    protected void ToggleAnswersInteractability(bool toggle)
+    {
+        foreach(var answer in answers)
+        {
+            if(answer != null) answer.ToggleInteractability(toggle);
+        }
     }
 
     private IEnumerator VerifyCoroutine(int currentQuestionIndex)

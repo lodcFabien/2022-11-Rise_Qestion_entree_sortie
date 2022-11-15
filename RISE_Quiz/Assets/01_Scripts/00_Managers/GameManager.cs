@@ -129,10 +129,12 @@ public class GameManager : MonoBehaviour
             case QuizState.EntryQuestion:
                 entryQuestion.ResetQuestion();
                 currentQuestion = entryQuestion;
+                currentQuestion.ActivateAnswers();
                 break;
             case QuizState.ExitQuestion:
                 exitQuestion.ResetQuestion();
                 currentQuestion = exitQuestion;
+                currentQuestion.ActivateAnswers();
                 break;
             case QuizState.DisplayingHint:
                 hintPanel.SetHint(terminalConfig.GetHint(currentTeam.ID), LocalizationManager.Instance.ActiveLanguage, GetHintNumber());

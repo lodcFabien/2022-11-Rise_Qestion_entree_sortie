@@ -37,12 +37,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f5346ae1974370448a9fe3985617f423, type: 2}
   wordsToFind:
   - INTENSE
-  - HORIZON
   - PLANETE
-  - SERIEUX
-  - EXPLOIT
-  - SOUTIEN
+  - HORIZON
   - RADIEUX
+  - GENIAUX
+  - SOUTIEN
+  - EXPLOIT
   teams:
   - {fileID: 11400000, guid: 584c0d482dbfb9b4eb879c227b324ed5, type: 2}
   - {fileID: 11400000, guid: 0f9c4ce4558f28641b0d5c32a8987de3, type: 2}

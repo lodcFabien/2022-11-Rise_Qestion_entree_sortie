@@ -15,6 +15,17 @@ public class TextWobbler : MonoBehaviour
     public void SetFactor(float newFactor)
     {
         wobbleFactor = newFactor;
+    
+    }
+
+    public void StopWobble()
+    {
+        doWobble = false;
+    }
+
+    public void StartWobble()
+    {
+        doWobble = true;
     }
 
     private void Update()
