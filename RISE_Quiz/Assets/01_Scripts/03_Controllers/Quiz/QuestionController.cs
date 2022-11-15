@@ -162,6 +162,8 @@ public class QuestionController : BaseController
 
     public void ResetQuestion(bool fullReset = false)
     {
+        if(Question == null) { return; }
+         
         Question.ResetQuestion();
 
         if (fullReset)

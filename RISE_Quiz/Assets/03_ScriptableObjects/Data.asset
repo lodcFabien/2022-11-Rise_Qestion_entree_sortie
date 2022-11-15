@@ -72,3 +72,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d7338ac30fd1ae4099234290e65785f, type: 2}
   - {fileID: 11400000, guid: 6538687c2207d054eb31f0aff599b045, type: 2}
   - {fileID: 11400000, guid: 194821207c0e37a468372626e7e5a333, type: 2}
+  groupA: {fileID: 11400000, guid: 4e51da56f77e8604e861d365648a0fd7, type: 2}
+  groupB: {fileID: 11400000, guid: 8f669ef234b266a49a273067a3130a25, type: 2}
+  groupC: {fileID: 11400000, guid: c71e9318d1893004bac0aba390ba52ec, type: 2}
+  groupD: {fileID: 11400000, guid: fa5a2efc1d409c244a938b796ca69523, type: 2}

@@ -3488,8 +3488,12 @@ MonoBehaviour:
   - {fileID: 772106213}
   - {fileID: 504427807}
   ld:
-    english: BREAK
+    english: CRACK
     french: CASSEZ
+  useDefinedScramble: 1
+  definedScramble:
+    english: CCARK
+    french: CESASZ
 --- !u!114 &772106213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3842,6 +3846,10 @@ MonoBehaviour:
   ld:
     english: CODE
     french: CODE
+  useDefinedScramble: 1
+  definedScramble:
+    english: CDOE
+    french: CDOE
 --- !u!114 &953668629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3997,6 +4005,10 @@ MonoBehaviour:
   ld:
     english: THE
     french: LE
+  useDefinedScramble: 1
+  definedScramble:
+    english: TEH
+    french: EL
 --- !u!114 &955294370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4805,7 +4817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.1}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1406540156
@@ -5271,6 +5283,7 @@ MonoBehaviour:
   state: 0
   terminalID: -1
   terminalConfig: {fileID: 0}
+  currentGroup: {fileID: 0}
   currentTeamOrderIndex: -1
   currentTeam: {fileID: 0}
   sortedTeams: []

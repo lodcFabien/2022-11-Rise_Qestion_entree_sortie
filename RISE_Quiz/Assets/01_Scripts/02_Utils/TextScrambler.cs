@@ -8,6 +8,10 @@ public class TextScrambler : MonoBehaviour
     [SerializeField] protected List<TMP_Text> texts;
     [SerializeField] protected LocalizationData ld;
 
+    [Space]
+    [SerializeField] protected bool useDefinedScramble = true;
+    [SerializeField] protected LocalizationData definedScramble;
+
     protected string referenceWord;
     protected string scrambledWord;
     protected char[] chars;
@@ -25,7 +29,6 @@ public class TextScrambler : MonoBehaviour
         }
         referenceWord = texts[0].text;
     }
-
 
     protected static int[] GenerateUniqueNumbers(int minValue, int maxValue)
     {
@@ -59,8 +62,16 @@ public class TextScrambler : MonoBehaviour
 
     public void Scramble()
     {
-        var order = GenerateUniqueNumbers(0, referenceWord.Length - 1);
-        scrambledWord = new string (order.Select(i => referenceWord[i]).ToArray());
+        if(useDefinedScramble)
+        {
+            scrambledWord = definedScramble.GetTranslation(LocalizationManager.Instance.ActiveLanguage);
+        }
+        else
+        {
+            var order = GenerateUniqueNumbers(0, referenceWord.Length - 1);
+            scrambledWord = new string(order.Select(i => referenceWord[i]).ToArray());
+        }
+
         texts.ForEach(x => x.text = scrambledWord);
     }
 

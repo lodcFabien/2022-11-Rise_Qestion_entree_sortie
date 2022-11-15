@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TerminalConfig terminalConfig;
 
     [Header("Team Order & ID")]
+    [SerializeField] private Group currentGroup;
     [SerializeField] private int currentTeamOrderIndex = -1;
     [SerializeField] private Team currentTeam;
     [SerializeField] private List<Team> sortedTeams;
@@ -193,7 +194,7 @@ public class GameManager : MonoBehaviour
     {
         currentTeam = data.Teams[index];
         currentTeamOrderIndex = sortedTeams.IndexOf(currentTeam);
-        overlay.SetTeamName(currentTeam.Name);
+        UpdateDataOnTeamChange();
     }
 
     public void ResetEverything()
@@ -216,9 +217,16 @@ public class GameManager : MonoBehaviour
     private void SetTeam()
     {
         currentTeam = sortedTeams[currentTeamOrderIndex];
-        overlay.SetTeamName(currentTeam.Name);
+        UpdateDataOnTeamChange();
+
         OnTeamChanged?.Invoke(Array.IndexOf(Teams, currentTeam));
-        //Debug.Log($"Team ID #{currentTeam.ID}, Name{currentTeam.Name}, will obtain its hint number {currentTeamOrderIndex}");
+    }
+
+    private void UpdateDataOnTeamChange()
+    {
+        currentGroup = data.GetGroupByTeamNumber(currentTeam.Number);
+        overlay.SetTeamName(currentTeam.Name);
+        Debug.Log($"Team ID #{currentTeam.ID}, Name '{currentTeam.Name}', will obtain its hint number {GetHintNumber()}");
     }
 
     private void VerifyQuestion()
@@ -248,7 +256,7 @@ public class GameManager : MonoBehaviour
 
     private int GetHintNumber()
     {
-        return currentTeamOrderIndex+1;
+        return currentGroup.Teams.IndexOf(currentTeam) + 1;
     }
 
     #endregion

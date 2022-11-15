@@ -20,22 +20,49 @@ public class ScrambleController : MonoBehaviour
 
     protected void Start()
     {
-        LocalizationManager.Instance.OnLanguageChanged += UpdateLanguage;
         StopScrambleCoroutine();
         scramblers.ForEach(x => x.Init(LocalizationManager.Instance.ActiveLanguage));
+        StartScrambleCoroutine();
+        LocalizationManager.Instance.OnLanguageChanged += UpdateLanguage;
+        GameManager.Instance.OnQuizStateChanged += ActionOnQuizStateChanged;
+    }
+
+    private void StartScrambleCoroutine()
+    {
         scramble = StartCoroutine(ScrambleCoroutine());
     }
 
     private void OnDestroy()
     {
         LocalizationManager.Instance.OnLanguageChanged -= UpdateLanguage;
+        GameManager.Instance.OnQuizStateChanged -= ActionOnQuizStateChanged;
+    }
+
+    protected void ActionOnQuizStateChanged(QuizState newState)
+    {
+        switch (newState)
+        {
+            case QuizState.Init:
+            case QuizState.Setup:
+            case QuizState.WaitingForStart:
+            case QuizState.DisplayingHint:
+            case QuizState.Verifying:
+            case QuizState.WaitingForExpertSpeech:
+                StartScrambleCoroutine();
+                break;
+
+            case QuizState.EntryQuestion:
+            case QuizState.ExitQuestion:
+                StopScrambleCoroutine();
+                break;
+        }
     }
 
     protected void UpdateLanguage(Language language)
     {
         StopScrambleCoroutine();
         scramblers.ForEach(x => x.UpdateLanguage(language));
-        scramble = StartCoroutine(ScrambleCoroutine());
+        StartScrambleCoroutine();
     }
 
     private void DeactivateHLGs()

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80e582b9a00bc6439a7417ba6f27e23, type: 3}
   m_Name: GroupB
   m_EditorClassIdentifier: 
-  group: 1
+  letter: 1
   teams:
-  - teamNumber: 8
-  - teamNumber: 9
-  - teamNumber: 10
-  - teamNumber: 11
-  - teamNumber: 12
-  - teamNumber: 13
-  - teamNumber: 14
+  - {fileID: 11400000, guid: 8fda19a6725562f429a8d1f37ed867b0, type: 2}
+  - {fileID: 11400000, guid: 2029a0255cb5d6e429fbb04cbedd1e59, type: 2}
+  - {fileID: 11400000, guid: a404e13fbd6793a4ea028cd3aefd17a1, type: 2}
+  - {fileID: 11400000, guid: 6d999af99cbdc9b4aa43a7138300e50f, type: 2}
+  - {fileID: 11400000, guid: 3375287c303db38499c5e7a3c284a627, type: 2}
+  - {fileID: 11400000, guid: 6e709234339d70d40a5732360094b5bd, type: 2}
+  - {fileID: 11400000, guid: cf7bb6cc2165dc74cadeb85fc4dd5d51, type: 2}
