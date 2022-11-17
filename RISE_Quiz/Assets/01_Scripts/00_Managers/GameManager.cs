@@ -202,6 +202,7 @@ public class GameManager : MonoBehaviour
         entryQuestion.ResetQuestion(true);
         exitQuestion.ResetQuestion(true);
         SetState(QuizState.Setup);
+        StopAllCoroutines();
     }
 
     #endregion

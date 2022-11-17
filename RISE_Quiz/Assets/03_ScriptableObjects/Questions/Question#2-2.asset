@@ -13,23 +13,26 @@ MonoBehaviour:
   m_Name: Question#2-2
   m_EditorClassIdentifier: 
   dataText:
-    english: What is John's name?
-    french: Comment s'appelle Jean ?
+    english: "Quel type d\u2019architecture est le RISE en termes de flux a\xE9rodynamique
+      ?"
+    french: "Quel type d\u2019architecture est le RISE en termes de flux a\xE9rodynamique
+      ?"
   id: 22
+  shouldBeCentered: 1
   state: 0
   answers:
   - dataText:
-      english: Mark
-      french: Marc
+      english: "Flux de neutrons \xE0 polarit\xE9 invers\xE9e"
+      french: "Flux de neutrons \xE0 polarit\xE9 invers\xE9e"
     isCorrect: 0
     isChecked: 0
   - dataText:
-      english: Peter
-      french: Pierre
+      english: "Double flux a\xE9rodynamique"
+      french: "Double flux a\xE9rodynamique"
     isCorrect: 0
     isChecked: 0
   - dataText:
-      english: John
-      french: Jean
+      english: "Triple flux a\xE9rodynamique"
+      french: "Triple flux a\xE9rodynamique"
     isCorrect: 1
     isChecked: 0

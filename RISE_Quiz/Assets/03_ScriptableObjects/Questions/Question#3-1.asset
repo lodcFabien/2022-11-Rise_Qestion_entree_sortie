@@ -13,25 +13,28 @@ MonoBehaviour:
   m_Name: Question#3-1
   m_EditorClassIdentifier: 
   dataText:
-    english: "RISE est un programme de recherche ambitieux et tr\xE8s large ; en
-      t\xE9moigne le nombre de campagnes d'essai. Quel est ce nombre ?"
-    french: "RISE est un programme de recherche ambitieux et tr\xE8s large ; en t\xE9moigne
-      le nombre de campagnes d'essai. Quel est ce nombre ?"
+    english: "Le module Fan du LEAP a \xE9t\xE9 valid\xE9 en perte d\u2019aube via
+      un d\xE9monstrateur.\nCette machine test\xE9e au banc 19ER \xE0 Villaroche
+      \xE9tait nomm\xE9e :"
+    french: "Le module Fan du LEAP a \xE9t\xE9 valid\xE9 en perte d\u2019aube via
+      un d\xE9monstrateur.\nCette machine test\xE9e au banc 19ER \xE0 Villaroche
+      \xE9tait nomm\xE9e :"
   id: 31
+  shouldBeCentered: 1
   state: 0
   answers:
   - dataText:
-      english: Over 50
-      french: + de 50
-    isCorrect: 0
-    isChecked: 0
-  - dataText:
-      english: Over 300
-      french: + de 300
+      english: PERCEVAL
+      french: PERCEVAL
     isCorrect: 1
     isChecked: 0
   - dataText:
-      english: Over 1,000
-      french: + de 1.000
+      english: LANCELOT
+      french: LANCELOT
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: R2D2
+      french: R2D2
     isCorrect: 0
     isChecked: 0

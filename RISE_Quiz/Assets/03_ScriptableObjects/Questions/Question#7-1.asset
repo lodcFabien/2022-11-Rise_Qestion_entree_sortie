@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: Question#7-1
   m_EditorClassIdentifier: 
   dataText:
-    english: What's the name of the famous French aeronautical company?
-    french: "Comment s'appelle le c\xE9l\xE8bre groupe a\xE9ronautique fran\xE7ais
+    english: "Quel est le premier d\xE9monstrateur Open Rotor auquel SAFRAN a particip\xE9
+      ?"
+    french: "Quel est le premier d\xE9monstrateur Open Rotor auquel SAFRAN a particip\xE9
       ?"
   id: 71
-  state: 0
+  shouldBeCentered: 1
+  state: 1
   answers:
   - dataText:
-      english: GOUVERNAIL
-      french: GOUVERNAIL
+      english: GE36
+      french: GE36
+    isCorrect: 1
+    isChecked: 1
+  - dataText:
+      english: RISE Open Fan
+      french: RISE Open Fan
     isCorrect: 0
     isChecked: 0
   - dataText:
-      english: SAFRAN
-      french: SAFRAN
-    isCorrect: 1
-    isChecked: 0
-  - dataText:
-      english: CURRY
-      french: CURRY
+      english: "Un moulin \xE0 vent"
+      french: "Un moulin \xE0 vent"
     isCorrect: 0
     isChecked: 0

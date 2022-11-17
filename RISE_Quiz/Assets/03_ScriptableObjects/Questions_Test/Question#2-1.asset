@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3700eeaf556f56245a4924c7dba7bf90, type: 3}
+  m_Name: Question#2-1
+  m_EditorClassIdentifier: 
+  dataText:
+    english: "Quelle est la date de cr\xE9ation de CFM, la plus belle joint-venture
+      de l'Histoire ?"
+    french: "Quelle est la date de cr\xE9ation de CFM, la plus belle joint-venture
+      de l'Histoire ?"
+  id: 21
+  state: 0
+  answers:
+  - dataText:
+      english: October 5th, 1984
+      french: 5 octobre 1984
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: November 21st, 1972
+      french: 21 novembre 1972
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: September 24th, 1974
+      french: 24 septembre 1974
+    isCorrect: 1
+    isChecked: 0

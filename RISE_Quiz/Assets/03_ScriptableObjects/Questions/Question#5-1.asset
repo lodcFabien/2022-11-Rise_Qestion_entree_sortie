@@ -13,23 +13,24 @@ MonoBehaviour:
   m_Name: Question#5-1
   m_EditorClassIdentifier: 
   dataText:
-    english: What does chocolate taste like?
-    french: "Quel go\xFBt a le chocolat ?"
+    english: Quelle est la vitesse de rotation typique d'un moteur CFM LPT ?
+    french: Quelle est la vitesse de rotation typique d'un moteur CFM LPT ?
   id: 51
+  shouldBeCentered: 1
   state: 0
   answers:
   - dataText:
-      english: Strawberry
-      french: Fraise
+      english: "\xC7a d\xE9pend du mode d\u2019essorage"
+      french: "\xC7a d\xE9pend du mode d\u2019essorage"
     isCorrect: 0
     isChecked: 0
   - dataText:
-      english: Vanilla
-      french: Vanille
+      english: 2,000 RPM
+      french: 2.000 tr/min
     isCorrect: 0
     isChecked: 0
   - dataText:
-      english: Chocolate
-      french: Chocolat
+      english: 4,000 RPM
+      french: 4.000 tr/min
     isCorrect: 1
     isChecked: 0

@@ -63,15 +63,7 @@ public class TextFitter : MonoBehaviour
 
     public void FitHorizontallyToText(float cap)
     {
-        text.ForceMeshUpdate(true);
-        Vector2 textSize = text.GetPreferredValues();
-
-        float newWidth = textSize.x + padding.x;
-
-        if(newWidth < cap)
-        {
-            return;
-        }
+        float newWidth = GetPreferredWidth(cap);
 
         if (rectTransform != null)
         {
@@ -80,6 +72,45 @@ public class TextFitter : MonoBehaviour
 
             rectTransform.sizeDelta = newSize;
         }
+    }
+
+    public void FitHorizontallyToText(float cap, out float newWidth)
+    {
+        newWidth = GetPreferredWidth(cap);
+
+        if (rectTransform != null)
+        {
+            Vector2 newSize = rectTransform.sizeDelta;
+            newSize.x = newWidth;
+
+            rectTransform.sizeDelta = newSize;
+        }
+    }
+
+    public void SetWidth(float newWidth)
+    {
+        if (rectTransform != null)
+        {
+            Vector2 newSize = rectTransform.sizeDelta;
+            newSize.x = newWidth;
+
+            rectTransform.sizeDelta = newSize;
+        }
+    }
+
+    public float GetPreferredWidth(float cap)
+    {
+        text.ForceMeshUpdate(true);
+        Vector2 textSize = text.GetPreferredValues();
+
+        float newWidth = textSize.x + padding.x;
+
+        if (newWidth < cap)
+        {
+            newWidth = cap;
+        }
+
+        return newWidth;
     }
 
     public void FitVerticallyToText(float cap)

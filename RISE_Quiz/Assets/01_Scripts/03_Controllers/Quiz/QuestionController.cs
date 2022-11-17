@@ -23,27 +23,37 @@ public class QuestionController : BaseController
     protected MultipleChoiceQuestion Question { get; set; }
     public bool CanBeValidated => Question.CanBeValidated();
     protected GameManager GameManager => GameManager.Instance;
+    private QuestionView View => view as QuestionView;
+
+    private float[] answerWidths;
 
     public void Setup(MultipleChoiceQuestion question)
     {
         confirmButton.OnClickEvent += DeactivateAnswers;
 
         Question = question;
-        view.Populate(Question.Text);
+        View.Populate(Question.Text);
+        View.SetTextAlignment(Question.ShouldBeCentered);
 
         answers = new AnswerController[Question.Answers.Length];
+        answerWidths = new float[answers.Length];
 
         for (int i = 0; i < answers.Length; i++)
         {
             answers[i] = Instantiate(answerPrefab, answerParent);
             answers[i].Init(Question.Answers[i]);
             answers[i].gameObject.name += $" #{i}";
+            answerWidths[i] = answers[i].PreferredWidth;
+            answers[i].OnSelect += ActionOnAnswerSelected;
+            answers[i].OnDeselect += ActionOnAnswerDeselected;
         }
 
-        foreach (var answer in answers)
+        Array.Sort(answerWidths);
+        Array.Reverse(answerWidths);
+
+        for (int i = 0; i < answers.Length; i++)
         {
-            answer.OnSelect += ActionOnAnswerSelected;
-            answer.OnDeselect += ActionOnAnswerDeselected;
+            answers[i].SetWidth(answerWidths[0]);
         }
 
         textFitter.FitVerticallyToText(heightCap);

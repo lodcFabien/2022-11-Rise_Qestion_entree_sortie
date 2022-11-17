@@ -13,25 +13,30 @@ MonoBehaviour:
   m_Name: Question#2-1
   m_EditorClassIdentifier: 
   dataText:
-    english: "Quelle est la date de cr\xE9ation de CFM, la plus belle joint-venture
-      de l'Histoire ?"
-    french: "Quelle est la date de cr\xE9ation de CFM, la plus belle joint-venture
-      de l'Histoire ?"
+    english: "Sur les moteurs CFM legacy, comment s\u2019effectuait le partage des
+      activit\xE9s techniques entre GE et SAE ?"
+    french: "Sur les moteurs CFM legacy, comment s\u2019effectuait le partage des
+      activit\xE9s techniques entre GE et SAE ?"
   id: 21
+  shouldBeCentered: 0
   state: 0
   answers:
   - dataText:
-      english: October 5th, 1984
-      french: 5 octobre 1984
+      english: "GE \xE9tait responsable de l\u2019amont du moteur et SAE de l\u2019aval"
+      french: "GE \xE9tait responsable de l\u2019amont du moteur et SAE de l\u2019aval"
     isCorrect: 0
     isChecked: 0
   - dataText:
-      english: November 21st, 1972
-      french: 21 novembre 1972
-    isCorrect: 0
-    isChecked: 0
-  - dataText:
-      english: September 24th, 1974
-      french: 24 septembre 1974
+      english: "GE \xE9tait responsable des parties Haute Pression et SAE des parties
+        Basse Pression"
+      french: "GE \xE9tait responsable des parties Haute Pression et SAE des parties
+        Basse Pression"
     isCorrect: 1
+    isChecked: 0
+  - dataText:
+      english: "GE \xE9tait responsable du moteur gauche de l\u2019avion et SAE du
+        moteur droit"
+      french: "GE \xE9tait responsable du moteur gauche de l\u2019avion et SAE du
+        moteur droit"
+    isCorrect: 0
     isChecked: 0

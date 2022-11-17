@@ -582,7 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 636113157}
   waveController: {fileID: 1471777804}
-  waveTimer: 5
+  waveTimer: 10
 --- !u!1 &78247354
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21568628, g: 0, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -726,7 +726,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &98830078
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -786,7 +786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 150}
+  m_AnchoredPosition: {x: 0, y: 180}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &190869422
@@ -1244,7 +1244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21568628, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &284092822
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1425,8 +1425,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75.5}
-  m_SizeDelta: {x: 650, y: 150}
+  m_AnchoredPosition: {x: 0, y: -40}
+  m_SizeDelta: {x: 519.134, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &344620038
 MonoBehaviour:
@@ -1444,8 +1444,8 @@ MonoBehaviour:
   view: {fileID: 344620039}
   button: {fileID: 284092820}
   localizationData:
-    english: EXPERT QUESTION
-    french: QUESTION EXPERT
+    english: CONTINUE
+    french: CONTINUER
 --- !u!114 &344620039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3071,6 +3071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TMP_QuestionText
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289550302661798928, guid: a94c707dfb8d0444abd05d705b19b2f2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2446278904210521024, guid: a94c707dfb8d0444abd05d705b19b2f2,
         type: 3}
@@ -4769,7 +4774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1617850287}
   waveController: {fileID: 1426230631}
-  waveTimer: 5
+  waveTimer: 10
 --- !u!114 &1355995029 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4203563564810479280, guid: d6c2785d2d2685543b6f9488c3c2b11a,
@@ -5013,7 +5018,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUESTION EXPERT
+  m_text: CONTINUER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dbb3130b332db7e46872e7efc9b0e614, type: 2}
   m_sharedMaterial: {fileID: 5584306365978762674, guid: dbb3130b332db7e46872e7efc9b0e614,
@@ -6150,7 +6155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doScramble: 1
-  scrambleWaitTime: 6
+  scrambleWaitTime: 5
   scrambleStayTime: 3.25
   animator: {fileID: 2094660374}
   hlgs:
@@ -6176,7 +6181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21603727, g: 0, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6192,7 +6197,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &517239154197616856
 GameObject:
   m_ObjectHideFlags: 0
@@ -7129,7 +7134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21603727, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7145,7 +7150,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &8470579545280658399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7252,7 +7257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75.5}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 519.13403, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8470579546422433635

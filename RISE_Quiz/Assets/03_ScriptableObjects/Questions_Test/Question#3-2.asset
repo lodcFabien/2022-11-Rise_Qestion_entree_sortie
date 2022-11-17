@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3700eeaf556f56245a4924c7dba7bf90, type: 3}
+  m_Name: Question#3-2
+  m_EditorClassIdentifier: 
+  dataText:
+    english: What shape is the little star?
+    french: "De quelle forme est la petite \xE9toile ?"
+  id: 32
+  state: 0
+  answers:
+  - dataText:
+      english: Star-shaped
+      french: "En forme d'\xE9toile"
+    isCorrect: 1
+    isChecked: 0
+  - dataText:
+      english: Round-shaped
+      french: En forme de rond
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: Triangle-shaped
+      french: En forme de triangle
+    isCorrect: 0
+    isChecked: 0

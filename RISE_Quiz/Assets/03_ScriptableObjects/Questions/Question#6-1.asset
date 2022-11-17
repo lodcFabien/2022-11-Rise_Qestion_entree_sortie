@@ -13,23 +13,26 @@ MonoBehaviour:
   m_Name: Question#6-1
   m_EditorClassIdentifier: 
   dataText:
-    english: How is the Rafale's engine called?
-    french: Comment s'appelle le moteur du Rafale ?
+    english: "Combien d\u2019\xE9quipements de type \xAB pompe \xBB compte le circuit
+      d\u2019huile des moteurs CFM ?"
+    french: "Combien d\u2019\xE9quipements de type \xAB pompe \xBB compte le circuit
+      d\u2019huile des moteurs CFM ?"
   id: 61
-  state: 0
+  shouldBeCentered: 0
+  state: 1
   answers:
   - dataText:
-      english: Z32
-      french: Z32
-    isCorrect: 0
-    isChecked: 0
-  - dataText:
-      english: N64
-      french: N64
-    isCorrect: 0
-    isChecked: 0
-  - dataText:
-      english: M88
-      french: M88
+      english: 1
+      french: 1
     isCorrect: 1
+    isChecked: 1
+  - dataText:
+      english: 3,14159
+      french: 3,14159
+    isCorrect: 0
+    isChecked: 0
+  - dataText:
+      english: 4
+      french: 4
+    isCorrect: 0
     isChecked: 0

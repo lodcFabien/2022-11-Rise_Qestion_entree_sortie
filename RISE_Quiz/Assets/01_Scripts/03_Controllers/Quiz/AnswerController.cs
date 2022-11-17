@@ -13,13 +13,28 @@ public class AnswerController : ButtonController, ISelectable
     public Action<AnswerController> OnDeselect { get ; set; }
     public bool IsSelected { get; protected set; }
     public AnswerControllerState State => state;
+    private float preferredWidth;
+    public float PreferredWidth => preferredWidth;
 
     public void Init(MultipleChoiceAnswer answer)
     {
         Answer = answer;
         view.Populate(Answer.Text);
-        textFitter.FitHorizontallyToText(widthCap);
+        textFitter.FitHorizontallyToText(widthCap, out preferredWidth);
         ResetAnswer();
+    }
+
+    //private void OnEnable()
+    //{
+    //    if(Answer != null)
+    //    {
+    //        textFitter.FitHorizontallyToText(widthCap, out preferredWidth);
+    //    }
+    //}
+
+    public void SetWidth(float width)
+    {
+        textFitter.SetWidth(width);
     }
 
     public void SelectWithNotify()

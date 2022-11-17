@@ -13,23 +13,28 @@ MonoBehaviour:
   m_Name: Question#3-2
   m_EditorClassIdentifier: 
   dataText:
-    english: What shape is the little star?
-    french: "De quelle forme est la petite \xE9toile ?"
+    english: "Quelles sont les caract\xE9ristiques principales du Midfan ?"
+    french: "Quelles sont les caract\xE9ristiques principales du Midfan ?"
   id: 32
+  shouldBeCentered: 1
   state: 0
   answers:
   - dataText:
-      english: Star-shaped
-      french: "En forme d'\xE9toile"
+      english: "Un Blisk de 24 aubes de 38\u2019\u2019 en Ti64 assembl\xE9es par
+        soudure friction orbitale sur un moyeu en Ti17"
+      french: "Un Blisk de 24 aubes de 38\u2019\u2019 en Ti64 assembl\xE9es par soudure
+        friction orbitale sur un moyeu en Ti17"
     isCorrect: 1
     isChecked: 0
   - dataText:
-      english: Round-shaped
-      french: En forme de rond
+      english: "Un Blisk de 20 aubes de 42,5\u2019\u2019 en Ti64 assembl\xE9es par
+        soudure friction orbitale sur un moyeu en Ti17"
+      french: "Un Blisk de 20 aubes de 42,5\u2019\u2019 en Ti64 assembl\xE9es par
+        soudure friction orbitale sur un moyeu en Ti17"
     isCorrect: 0
     isChecked: 0
   - dataText:
-      english: Triangle-shaped
-      french: En forme de triangle
+      english: "Une groupie entre deux \xE2ges, une \xAB Mid - Fan \xBB"
+      french: "Une groupie entre deux \xE2ges, une \xAB Mid - Fan \xBB"
     isCorrect: 0
     isChecked: 0

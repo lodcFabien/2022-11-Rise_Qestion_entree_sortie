@@ -40,19 +40,24 @@ public class ScrambleController : MonoBehaviour
 
     protected void ActionOnQuizStateChanged(QuizState newState)
     {
+        StopScrambleCoroutine();
+
         switch (newState)
         {
             case QuizState.Init:
             case QuizState.Setup:
             case QuizState.WaitingForStart:
             case QuizState.DisplayingHint:
-            case QuizState.Verifying:
             case QuizState.WaitingForExpertSpeech:
-                StartScrambleCoroutine();
+                if(scramble == null)
+                {
+                    StartScrambleCoroutine();
+                }
                 break;
 
             case QuizState.EntryQuestion:
             case QuizState.ExitQuestion:
+            case QuizState.Verifying:
                 StopScrambleCoroutine();
                 break;
         }
@@ -97,12 +102,12 @@ public class ScrambleController : MonoBehaviour
 
         while (doScramble)
         {
-            yield return new WaitForSeconds(scrambleWaitTime);
             animator.ToggleAnim(true);
             scramblers.ForEach(x => x.Scramble());
             yield return new WaitForSeconds(scrambleStayTime);
             animator.ToggleAnim(false);
             scramblers.ForEach(x => x.Unscramble());
+            yield return new WaitForSeconds(scrambleWaitTime);
         }
     }
 }

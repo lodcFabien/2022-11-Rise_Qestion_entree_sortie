@@ -13,23 +13,24 @@ MonoBehaviour:
   m_Name: Question#4-2
   m_EditorClassIdentifier: 
   dataText:
-    english: Which nationality is the Japanese gentleman?
-    french: "De quelle nationalit\xE9 est le monsieur japonais ?"
+    english: "Combien d\u2019Open Fans compte le d\xE9monstrateur RISE ?"
+    french: "Combien d\u2019Open Fans compte le d\xE9monstrateur RISE ?"
   id: 42
+  shouldBeCentered: 1
   state: 0
   answers:
   - dataText:
-      english: Japanese
-      french: Japonaise
+      english: 14
+      french: 14
     isCorrect: 1
     isChecked: 0
   - dataText:
-      english: French
-      french: "Fran\xE7aise"
+      english: 18
+      french: 18
     isCorrect: 0
     isChecked: 0
   - dataText:
-      english: Italian
-      french: Italienne
+      english: 36 sur le moteur droit, 26 sur le gauche
+      french: 36 sur le moteur droit, 26 sur le gauche
     isCorrect: 0
     isChecked: 0
