@@ -3493,12 +3493,12 @@ MonoBehaviour:
   - {fileID: 772106213}
   - {fileID: 504427807}
   ld:
-    english: CRACK
-    french: CASSEZ
-  useDefinedScramble: 1
-  definedScramble:
     english: CCARK
     french: CESASZ
+  useDefinedScramble: 1
+  definedScramble:
+    english: CRACK
+    french: CASSEZ
 --- !u!114 &772106213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3849,12 +3849,12 @@ MonoBehaviour:
   - {fileID: 953668629}
   - {fileID: 1566663108}
   ld:
-    english: CODE
-    french: CODE
-  useDefinedScramble: 1
-  definedScramble:
     english: CDOE
     french: CDOE
+  useDefinedScramble: 1
+  definedScramble:
+    english: CODE
+    french: CODE
 --- !u!114 &953668629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4008,12 +4008,12 @@ MonoBehaviour:
   - {fileID: 955294370}
   - {fileID: 232179002}
   ld:
-    english: THE
-    french: LE
-  useDefinedScramble: 1
-  definedScramble:
     english: TEH
     french: EL
+  useDefinedScramble: 1
+  definedScramble:
+    english: THE
+    french: LE
 --- !u!114 &955294370
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -551,6 +551,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textField: {fileID: 6016815045693858204}
   animator: {fileID: 1434765046490677886}
+  correctColor: {r: 0, g: 1, b: 0.5411765, a: 1}
+  wrongColor: {r: 1, g: 0.2509804, b: 0.3529412, a: 1}
 --- !u!95 &1434765046490677886
 Animator:
   serializedVersion: 4
