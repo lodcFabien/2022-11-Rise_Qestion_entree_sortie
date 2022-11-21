@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     {
         overlay.Init();
         SetState(QuizState.Setup);
+        AudioManager.Instance.PlayMainMusic();
     }
 
     #endregion
@@ -227,7 +228,7 @@ public class GameManager : MonoBehaviour
     {
         currentGroup = data.GetGroupByTeamNumber(currentTeam.Number);
         overlay.SetTeamName(currentTeam.Name);
-        Debug.Log($"Team ID #{currentTeam.ID}, Name '{currentTeam.Name}', will obtain its hint number {GetHintNumber()}");
+        //Debug.Log($"Team ID #{currentTeam.ID}, Name '{currentTeam.Name}', will obtain its hint number {GetHintNumber()}");
     }
 
     private void VerifyQuestion()

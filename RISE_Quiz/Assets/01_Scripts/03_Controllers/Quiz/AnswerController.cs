@@ -90,6 +90,7 @@ public class AnswerController : ButtonController, ISelectable
         IsSelected = true;
         Answer.Toggle(IsSelected);
         SetState(AnswerControllerState.Selected);
+        AudioManager.Instance.PlaySelect(0.3f);
     }
 
     private void Deselect()

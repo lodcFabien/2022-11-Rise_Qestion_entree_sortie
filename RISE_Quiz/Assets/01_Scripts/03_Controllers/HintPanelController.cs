@@ -48,6 +48,7 @@ public class HintPanelController : PanelController
 
     public void ShowHint()
     {
+        AudioManager.Instance.PlayHint();
         spriteAnimator.ToggleAnim(true);
     }
 

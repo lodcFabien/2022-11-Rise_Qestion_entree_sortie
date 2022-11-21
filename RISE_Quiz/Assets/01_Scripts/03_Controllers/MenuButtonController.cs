@@ -35,6 +35,7 @@ public class MenuButtonController : ButtonController
     {
         OnClickEvent?.Invoke();
         View.OnClick();
+        AudioManager.Instance.PlayConfirm(0.5f);
     }
 
     protected void ActionOnClickAnimComplete()

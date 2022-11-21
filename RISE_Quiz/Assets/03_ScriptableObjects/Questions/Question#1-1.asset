@@ -32,7 +32,7 @@ MonoBehaviour:
     isCorrect: 0
     isChecked: 0
   - dataText:
-      english: "977 \xD7 \u221A \u03C0"
-      french: "977 \xD7 \u221A \u03C0"
+      english: "977 \u221A \u03C0"
+      french: "977 \u221A \u03C0"
     isCorrect: 0
     isChecked: 0

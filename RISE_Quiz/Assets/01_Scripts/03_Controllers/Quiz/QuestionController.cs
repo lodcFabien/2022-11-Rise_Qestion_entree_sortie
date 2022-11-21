@@ -111,7 +111,8 @@ public class QuestionController : BaseController
         confirmButton.Toggle(false);
         Question.Verify();
         bool isCorrect = Question.State == QuestionState.AnsweredCorrectly;
-        Debug.Log($"VerifyCoroutine().isCorrect? {isCorrect}");
+        //Debug.Log($"VerifyCoroutine().isCorrect? {isCorrect}");
+        AudioManager.Instance.PlayVerify(isCorrect, 0.75f);
         HideUnselectedAnswers();
 
         yield return new WaitForSeconds(suspenseTime);
